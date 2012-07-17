@@ -7,6 +7,11 @@ import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
 
+
+/**
+ * Spring实现ViewScope
+ * @author zhaoqian
+ */
 public class ViewScope implements Scope{
 
 	@Override
