@@ -46,18 +46,6 @@
 	jQuery("select").tooltip({
 		left: 20,top:-10
 	});
-	
-	//jQuery("a").tooltip({
-	//	showURL: false
-	//});
-	//jQuery("a").each(function() {
-	//	alert(this.type);
-	//	if(this.tooltipText==null){
-	//		
-	//		jQuery("a").tooltip({
-	//			showURL: false
-	//		});}
-	// });
 
 });
  
