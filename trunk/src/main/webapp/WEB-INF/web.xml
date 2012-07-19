@@ -10,6 +10,12 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
+  <!-- Primefaces的CSS文件的引用,可以直接指定primefaces的css jar包名:如bluesky -->
+   <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>#{guestPreferences.theme}</param-value>
+    </context-param>
+    
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:applicationContext.xml</param-value>
