@@ -1,4 +1,4 @@
-package org.credo.util;
+package org.credo.base.util;
 
 import java.util.Map;
 
