@@ -7,10 +7,11 @@ import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
 
-
 /**
- * Spring实现ViewScope
- * @author zhaoqian
+ * <p>Project: Credo's Base</p>
+ * <p>Description: 让Spring实现ViewScope</p>
+ * <p>Copyright (c) 2012 LionCredo.All Rights Reserved.</p>
+ * @author <a href="zhaoqianjava@foxmail.com">LionCredo</a>
  */
 public class ViewScope implements Scope{
 
