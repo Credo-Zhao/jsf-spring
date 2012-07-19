@@ -15,18 +15,18 @@
 
 		<!-- CSS & JS -->
 		<script type="text/javascript"
-			src="#{request.contextPath}/template/js/jquery.easing.1.3.js" />
+			src="#{request.contextPath}/templates/js/jquery.easing.1.3.js" />
 		<script type="text/javascript"
-			src="#{request.contextPath}/template/js/jquery.timer.js" />
+			src="#{request.contextPath}/templates/js/jquery.timer.js" />
 		<script type="text/javascript"
-			src="#{request.contextPath}/template/js/jquery.tooltip.js" />
+			src="#{request.contextPath}/templates/js/jquery.tooltip.js" />
 		<script type="text/javascript"
-			src="#{request.contextPath}/template/js/main.js" />
+			src="#{request.contextPath}/templates/js/main.js" />
 		<script type="text/javascript"  
-			src="#{request.contextPath}/template/js/calendari18n.js" />
-		<link href="#{request.contextPath}/template/css/primefaces/theme.css"
+			src="#{request.contextPath}/templates/js/calendari18n.js" />
+		<link href="#{request.contextPath}/templates/css/primefaces/theme.css"
 			rel="stylesheet" type="text/css" />
-		<link href="#{request.contextPath}/template/css/default.css"
+		<link href="#{request.contextPath}/templates/css/default.css"
 			rel="stylesheet" type="text/css" />
 		<link href="#{request.contextPath}/styles/defaultprimeface.css"
 			rel="stylesheet" type="text/css" />
@@ -42,8 +42,7 @@
 			<div id="top_up">
 				<div id="top_up_left">
 					<div id="title">
-						<img height="22" src="#{request.contextPath}/images/logo_01.gif"
-							alt="" /><span>LionCredo Testing framework</span>
+						<span>LionCredo Testing framework</span>
 					</div>
 				</div>
 
@@ -63,8 +62,7 @@
 				<div id="top_down_right">
 					<span class="img"> <img
 						src="#{request.contextPath}/images/user.gif" alt="" />
-					</span> <span class="fon">当前用户：<h:outputText
-							value="LionCredo" />
+					</span> <span class="fon">当前用户：<h:outputText value="LionCredo" />
 					</span>
 				</div>
 			</div>
@@ -78,8 +76,7 @@
 		
 		<div class="bottom">
 			<div id="down_left">
-				<img src="#{request.contextPath}/images/logo_15.gif" alt="" />&copy;2011
-				LionCredo 
+				　&copy;2012 LionCredo,版权所有. 
 			</div>
 
 			<div id="down_right">
@@ -92,7 +89,7 @@
 			<f:facet name="start">
 				<div class="ajaxStatus">
 				<span>
-					<h:graphicImage value="/template/img/loading.gif" />
+					<h:graphicImage value="/templates/img/loading.gif" />
 					<br/>
 					<h:outputLabel value="数据加载中,请稍候..."/>
 					</span>
@@ -105,7 +102,7 @@
 		<div id="submitDiv" style="display:none;">
 		<div class="ajaxStatus" >
 			<span>
-				<h:graphicImage value="/template/img/loading.gif" />
+				<h:graphicImage value="/templates/img/loading.gif" />
 				<br/>
 				<h:outputLabel value="数据加载中,请稍候..."/>
 			</span>
