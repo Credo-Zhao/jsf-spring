@@ -22,7 +22,7 @@
 		<property name="scopes">
 			<map>
 				<entry key="view">
-					<bean class="org.credo.util.ViewScope"></bean>
+					<bean class="org.credo.base.util.ViewScope"></bean>
 				</entry>
 			</map>
 		</property>
