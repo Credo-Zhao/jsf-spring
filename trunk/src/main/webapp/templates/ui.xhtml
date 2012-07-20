@@ -12,12 +12,21 @@
 			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
 			<title>LionCredo Testing Framework</title>
 		</f:facet>
-
+		
+		<script type="text/javascript"
+			src="#{request.contextPath}/templates/js/jquery.easing.1.3.js" />
+		<script type="text/javascript"
+			src="#{request.contextPath}/templates/js/jquery.timer.js" />
+		<script type="text/javascript"
+			src="#{request.contextPath}/templates/js/jquery.tooltip.js" />
 		<link type="text/css" rel="stylesheet"
 			href="#{request.contextPath}/templates/css/default.css" />
 		<link type="text/css" rel="stylesheet"
 			href="#{request.contextPath}/templates/css/syntaxhighlighter/syntaxhighlighter.css" />
-
+		<script type="text/javascript"
+			src="#{request.contextPath}/templates/js/main.js" />
+		<script type="text/javascript"  
+			src="#{request.contextPath}/templates/js/calendari18n.js" />
 		<ui:insert name="head"></ui:insert>
 
 		<script type="text/javascript">
@@ -28,23 +37,9 @@
 	<h:body>
 
 		<div id="header" class="ui-widget ui-widget-header">
-			<div id="logo">LionCredo</div>
-
-			<div id="menu" class="ui-widget">
-				<ul id="main">
-					<li class="current_page_item"><a
-						href="#{request.contextPath}/ui/home.jsf"
-						style="background: url('../design/ui.png') no-repeat center left;">用户管理</a></li>
-					<li><a href="#{request.contextPath}/mobile/index.jsf"
-						style="background: url('../design/iphone.png') no-repeat center left;">岗位分配</a></li>
-					<li><a href="#{request.contextPath}/push/index.jsf"
-						style="background: url('../design/push.png') no-repeat center left">事务管理</a></li>
-					<li class="current_page_item"><a
-						href="#{request.contextPath}/ui/macosx.jsf"
-						style="background: url('../design/mac.png') no-repeat center left;">基本功能</a></li>
-				</ul>
+			<div id="logo">
+				 <h:outputLabel  value="LionCredo Testing Framework" />  
 			</div>
-
 			<div id="globalthemeswitcher">
 				<h:form>
 					<p:themeSwitcher value="#{themeSwitcherBean.theme}"
@@ -53,20 +48,75 @@
 						<f:selectItems value="#{themeSwitcherBean.advancedThemes}"
 							var="theme" itemLabel="#{theme.name}" itemValue="#{theme}" />
 						<p:ajax listener="#{themeSwitcherBean.saveTheme}" />
-
 						<p:column>
 							<p:graphicImage value="/images/themes/#{t.image}" />
 						</p:column>
-
 						<p:column>
                             #{t.name}
                         </p:column>
 					</p:themeSwitcher>
+					
 				</h:form>
 			</div>
+			
+			<div id="top_down_right">
+					<div  style="margin-top: 8px;"> <img src="#{request.contextPath}/images/user.gif" alt="" />
+					当前用户：<h:outputText value="LionCredo " />
+					<img src="#{request.contextPath}/images/icons/exit.gif" />
+					<a href="faces/login.xhtml" >注销</a></div>
+			</div>
 		</div>
-
-		<div id="page" >
+		<div id="globalbottomdiv">
+				<h:form>
+					<p:megaMenu>  
+        <p:submenu label="TV" icon="ui-icon-check">  
+            <p:column>  
+                <p:submenu label="TV.1">  
+                    <p:menuitem value="TV.1.1" url="#" />  
+                    <p:menuitem value="TV.1.2" url="#" />  
+                </p:submenu>  
+                <p:submenu label="TV.2">  
+                    <p:menuitem value="TV.2.1" url="#" />  
+                    <p:menuitem value="TV.2.2" url="#" />  
+                    <p:menuitem value="TV.2.3" url="#" />  
+                </p:submenu>  
+                <p:submenu label="TV.3">  
+                    <p:menuitem value="TV.3.1" url="#" />  
+                    <p:menuitem value="TV.3.2" url="#" />  
+                </p:submenu>  
+            </p:column>  
+  
+            <p:column>  
+                <p:submenu label="TV.4">  
+                    <p:menuitem value="TV.4.1" url="#" />  
+                    <p:menuitem value="TV.4.2" url="#" />  
+                </p:submenu>  
+                <p:submenu label="TV.5">  
+                    <p:menuitem value="TV.5.1" url="#" />  
+                    <p:menuitem value="TV.5.2" url="#" />  
+                    <p:menuitem value="TV.5.3" url="#" />  
+                </p:submenu>  
+            </p:column>  
+  
+            <p:column>  
+                <strong>Sopranos</strong>  
+                <p:graphicImage value="/images/sopranos/sopranos1.jpg" width="200"/>  
+            </p:column>  
+        </p:submenu>  
+  
+        <p:submenu label="Sports" icon="ui-icon-document">  
+        </p:submenu>  
+  
+        <p:submenu label="Entertainment" icon="ui-icon-pencil">  
+        </p:submenu>  
+  
+        <p:submenu label="Tech" icon="ui-icon-contact">  
+        </p:submenu>  
+        <p:menuitem value="Quit" url="http://www.primefaces.org" icon="ui-icon-close" />  
+    </p:megaMenu> 
+				</h:form>
+			</div>
+		<div id="page">
 			<div id="content" >
 				<div>
 					<ui:insert name="content"></ui:insert>
@@ -75,7 +125,7 @@
 			<div style="clear: both;"></div>
 		</div>
 
-		<div class="bottom">
+		<div  id="footer" class="ui-widget ui-widget-header ui-corner-all bottom">
 			<div id="down_left">
 				　&copy;2012 LionCredo,版权所有. 
 			</div>

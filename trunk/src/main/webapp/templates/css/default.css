@@ -50,12 +50,16 @@ img.right {
 /* Header */
 #header {
     padding: 4px 0px;
-    height: 75px;
+    height: 50px;
     position: relative;
 }
 
 #logo {
+	position:absolute;
     text-align: left;
+    font-size: x-large;
+    top: 15px;
+    left:20px;
 }
 
 /* Menu */
@@ -93,13 +97,18 @@ img.right {
 
 #globalthemeswitcher {
     position:absolute;
-    top:5px;
-    right:50px;
+    top:28px;
+    right:30px;
 }
 
+#top_down_right{
+	position:absolute;
+    top:0px;
+    right:31px;
+}
 /* Page */
 #page {
-	padding: 10px 0px;
+	padding: 3px 0px;
 	background: #FFFFFF;
 }
 
@@ -208,7 +217,7 @@ img.right {
 
 /* Footer */
 #footer {
-	height: 40px;
+	height: 24px;
 	margin: 0 auto;
 	padding: 0 20px;
     font-size: 14px;
@@ -258,6 +267,8 @@ img.right {
 .ui-widget {
     font-size: 12px !important;
 }
+
+
 /* 上面都是Primefaces自身的CSS样式,做了稍微的修改,下面是我自己添加的一些CSS样式 */
 .style1 {
 	border: 1px solid #dcdddf;
@@ -275,10 +286,10 @@ img.right {
 
 .panel1 {
 	position: absolute;
-	height: 99.6%;
+	height: 80%;
 	width: 99.6%;
 	overflow: auto;
-	 border-width:0px;
+	border-width:0px;
 }
 
 /*dataTable的行样式,
@@ -290,4 +301,35 @@ img.right {
 }
 .lazy_datatable_row2 {
 	height: 18px;
+}
+.bottom {
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	height: 23px;
+}
+#down {
+	width: 100%;
+	height: 23px;
+}
+
+#down_left {
+	float: left;
+	margin-left: 20px;
+	margin-top: 5px;
+}
+#down_right {
+	float: right;
+	margin-right: 10px;
+	margin-top: 5px;
+}
+
+#down_right_time {
+	float: left;
+}
+
+#down_right_timer {
+	float: right;
+	font-weight: bold;
 }
