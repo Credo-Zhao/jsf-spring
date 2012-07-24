@@ -16,7 +16,49 @@
 		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
 		default-lazy-init="true">
 	<context:component-scan base-package="org.credo"/>
-
+	
+	<!-- datasource -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		
+		<property name="initialSize" value="${initialSize}"/>
+		<property name="maxActive" value="${maxActive}"/>
+		<property name="maxIdle" value="${maxIdle}"/>
+		<property name="minIdle" value="${minIdle}"/>
+	</bean>
+	
+	<!-- entity manager factory -->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="persistenceUnitName" value="punit"/>
+		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"/>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="true" />
+				<property name="generateDdl" value="true"/>
+			</bean>
+		</property>
+		<property name="jpaPropertyMap">
+			<map>
+				<entry key="dialect" value="tool.HibernateForMySQLDialect"/>
+				<entry key="hibernate.hbm2ddl.auto" value="update"/>
+                <entry key="hibernate.show_sql" value="true" />
+            </map>
+		</property>
+	</bean>
+	
+	<!-- transaction --> 
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	
 	<!-- support jsf view scope -->
 	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
 		<property name="scopes">
@@ -27,5 +69,21 @@
 			</map>
 		</property>
 	</bean>
-	
+	<!--   
+		事务传播行为类型  
+		REQUIRED  
+		 如果当前没有事务，就新建一个事务，如果已经存在一个事务中，加入到这个事务中。这是最常见的选择。  
+		SUPPORTS  
+		 支持当前事务，如果当前没有事务，就以非事务方式执行。  
+		MANDATORY  
+		 使用当前的事务，如果当前没有事务，就抛出异常。  
+		REQUIRES_NEW  
+		 新建事务，如果当前存在事务，把当前事务挂起。  
+		NOT_SUPPORTED  
+		 以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。  
+		NEVER  
+		 以非事务方式执行，如果当前存在事务，则抛出异常。  
+		NESTED  
+		 如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行与PROPAGATION_REQUIRED类似的操作。  
+	-->  
 </beans>
