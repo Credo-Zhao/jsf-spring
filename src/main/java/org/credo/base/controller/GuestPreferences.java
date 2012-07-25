@@ -3,9 +3,10 @@ package org.credo.base.controller;
 import java.io.Serializable;
 import java.util.Map;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 /**
  * <p>Project: Credo's Base</p>
@@ -13,13 +14,13 @@ import javax.faces.context.FacesContext;
  * <p>Copyright (c) 2012 LionCredo.All Rights Reserved.</p>
  * @author <a href="zhaoqianjava@foxmail.com">LionCredo</a>
  */
-@ManagedBean
-@SessionScoped
+@Controller
+@Scope("session")
 public class GuestPreferences implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String theme="bluesky"; //defalut
+	private String theme="cupertino"; //defalut
 
 	public String getTheme() {
 		//获取JSF的FacesContext的当前线程实例,并获取其外部上下文,然后返回一个不可变的 Map，

@@ -7,11 +7,11 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.annotation.Resource;
 
 import org.credo.base.controller.vo.ThemeVO;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 /**
  * <p>Project: Credo's Base</p>
@@ -19,13 +19,13 @@ import org.credo.base.controller.vo.ThemeVO;
  * <p>Copyright (c) 2012 LionCredo.All Rights Reserved.</p>
  * @author <a href="zhaoqianjava@foxmail.com">LionCredo</a>
  */
-@ManagedBean
-@RequestScoped
+@Controller
+@Scope("request")
 public class ThemeSwitcherBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@ManagedProperty(value = "#{gp}") 
+	@Resource
 	private GuestPreferences gp; //only set
 	
 	private Map<String,String> themes; //only get
