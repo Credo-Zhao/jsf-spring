@@ -35,161 +35,13 @@
 					</h:panelGrid>
 
 					<div align="right" style="margin-top: 5px; margin-bottom: 5px;">
-						<p:commandButton value="查询" icon="ui-icon ui-icon-search" style="margin-right:5px" />
+						<p:commandButton value="查询" icon="ui-icon ui-icon-search" style="margin-right:5px" actionListener="#{tableBean.queryUserInfo()}" update=":taxFormId:tableId"/>
 						<p:commandButton value="重置" icon="ui-icon ui-icon-cancel" style="margin-right:13px" />
 					</div>
 				</div>
-
-
-				<p:megaMenu>  
-        <p:submenu label="TV" icon="ui-icon-check">  
-            <p:column>  
-                <p:submenu label="TV.1">  
-                    <p:menuitem value="TV.1.1" url="#" />  
-                    <p:menuitem value="TV.1.2" url="#" />  
-                </p:submenu>  
-                <p:submenu label="TV.2">  
-                    <p:menuitem value="TV.2.1" url="#" />  
-                    <p:menuitem value="TV.2.2" url="#" />  
-                    <p:menuitem value="TV.2.3" url="#" />  
-                </p:submenu>  
-                <p:submenu label="TV.3">  
-                    <p:menuitem value="TV.3.1" url="#" />  
-                    <p:menuitem value="TV.3.2" url="#" />  
-                </p:submenu>  
-            </p:column>  
-  
-            <p:column>  
-                <p:submenu label="TV.4">  
-                    <p:menuitem value="TV.4.1" url="#" />  
-                    <p:menuitem value="TV.4.2" url="#" />  
-                </p:submenu>  
-                <p:submenu label="TV.5">  
-                    <p:menuitem value="TV.5.1" url="#" />  
-                    <p:menuitem value="TV.5.2" url="#" />  
-                    <p:menuitem value="TV.5.3" url="#" />  
-                </p:submenu>  
-            </p:column>  
-  
-            <p:column>  
-                <strong>Sopranos</strong>  
-                <p:graphicImage value="/images/sopranos/sopranos1.jpg" width="200"/>  
-            </p:column>  
-        </p:submenu>  
-  
-        <p:submenu label="Sports" icon="ui-icon-document">  
-  
-            <p:column>  
-                <p:submenu label="Sports.1">  
-                    <p:menuitem value="Sports.1.1" url="#" />  
-                    <p:menuitem value="Sports.1.2" url="#" />  
-                </p:submenu>  
-                <p:submenu label="Sports.2">  
-                    <p:menuitem value="Sports.2.1" url="#" />  
-                    <p:menuitem value="Sports.2.2" url="#" />  
-                    <p:menuitem value="Sports.2.3" url="#" />  
-                </p:submenu>  
-                <p:submenu label="Sports.3">  
-                    <p:menuitem value="Sports.3.1" url="#" />  
-                    <p:menuitem value="Sports.3.2" url="#" />  
-                </p:submenu>  
-            </p:column>  
-  
-            <p:column>  
-                <p:submenu label="Sports.4">  
-                    <p:menuitem value="Sports.4.1" url="#" />  
-                    <p:menuitem value="Sports.4.2" url="#" />  
-                </p:submenu>  
-                <p:submenu label="Sports.5">  
-                    <p:menuitem value="Sports.5.1" url="#" />  
-                    <p:menuitem value="Sports.5.2" url="#" />  
-                    <p:menuitem value="Sports.5.3" url="#" />  
-                </p:submenu>  
-            </p:column>  
-            <p:column>  
-                <p:submenu label="Sports.7">  
-                    <p:menuitem value="Sports.7.1" url="#" />  
-                    <p:menuitem value="Sports.7.2" url="#" />  
-                </p:submenu>  
-                <p:submenu label="Sports.8">  
-                    <p:menuitem value="Sports.8.1" url="#" />  
-                    <p:menuitem value="Sports.8.2" url="#" />  
-                    <p:menuitem value="Sports.8.3" url="#" />  
-                    <p:menuitem value="Sports.8.4" url="#" />  
-                    <p:menuitem value="Sports.8.5" url="#" />  
-                    <p:menuitem value="Sports.8.6" url="#" />  
-                </p:submenu>  
-            </p:column>  
-        </p:submenu>  
-  
-        <p:submenu label="Entertainment" icon="ui-icon-pencil">  
-            <p:column>  
-                <p:submenu label="Entertainment.1">  
-                    <p:menuitem value="Entertainment.1.1" url="#" />  
-                    <p:menuitem value="Entertainment.1.2" url="#" />  
-                </p:submenu>  
-                <p:submenu label="Entertainment.2">  
-                    <p:menuitem value="Entertainment.2.1" url="#" />  
-                    <p:menuitem value="Entertainment.2.2" url="#" />  
-                    <p:menuitem value="Entertainment.2.3" url="#" />  
-                </p:submenu>  
-                <p:submenu label="Entertainment.3">  
-                    <p:menuitem value="Entertainment.3.1" url="#" />  
-                    <p:menuitem value="Entertainment.3.2" url="#" />  
-                </p:submenu>  
-            </p:column>  
-  
-            <p:column>  
-                <p:submenu label="Entertainment.4" icon="ui-icon-help">  
-                    <p:menuitem value="Entertainment.4.1" url="#" />  
-                    <p:menuitem value="Entertainment.4.2" url="#" />  
-                </p:submenu>  
-                <p:submenu label="Entertainment.5">  
-                    <p:menuitem value="Entertainment.5.1" url="#" />  
-                    <p:menuitem value="Entertainment.5.2" url="#" />  
-                    <p:menuitem value="Entertainment.5.3" url="#" />  
-                </p:submenu>  
-                <p:submenu label="Entertainment.6">  
-                    <p:menuitem value="Entertainment.6.1" url="#" />  
-                    <p:menuitem value="Entertainment.6.2" url="#" />  
-                </p:submenu>  
-            </p:column>  
-        </p:submenu>  
-  
-  
-        <p:submenu label="Tech" icon="ui-icon-contact">  
-            <p:column>  
-                <p:submenu label="Tech.AAAAAA">
-                	<p:submenu>
-                		 <p:menuitem value="Tech.BBBBBBB" url="#" />  
-                    <p:menuitem value="Tech.CCCCCCCCC" url="#" />  
-                	</p:submenu>  
-                    <p:menuitem value="Tech.1.1" url="#" />  
-                    <p:menuitem value="Tech.1.2" url="#" />  
-                </p:submenu>  
-                <p:submenu label="Tech.2">  
-                    <p:menuitem value="Tech.2.1" url="#" />  
-                    <p:menuitem value="Tech.2.2" url="#" />  
-                    <p:menuitem value="Tech.2.3" url="#" />  
-                </p:submenu>  
-                <p:submenu label="Tech.3">  
-                    <p:menuitem value="Tech.3.1" url="#" />  
-                    <p:menuitem value="Tech.3.2" url="#" />  
-                </p:submenu>  
-            </p:column>  
-  
-            <p:column>  
-                <p:submenu label="Tech.4">  
-                    <p:menuitem value="Tech.4.1" url="#" />  
-                    <p:menuitem value="Tech.4.2" url="#" />  
-                </p:submenu>  
-            </p:column>  
-        </p:submenu>  
-  
-        <p:menuitem value="Quit" url="http://www.primefaces.org" icon="ui-icon-close" />  
-    </p:megaMenu> 
+			
 				
-				<p:dataTable var="ss" value="#{tableBean.list}"   
+				<p:dataTable var="ss" value="#{tableBean.list}"   id="tableId" 
 					paginatorPosition="bottom" rowIndexVar="index" paginator="true"
 					rows="10"
 					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}" 
@@ -204,23 +56,66 @@
 								 />
 						</div>
 					</f:facet>
-					<p:column style="width:5%;">
+					<p:column >
 						<f:facet name="header">
 							<h:outputText value="ID" />
 						</f:facet>
 						<h:outputText value="#{ss.id}" />
 					</p:column>
-					<p:column style="width:15%;">
+					<p:column >
 						<f:facet name="header">
-							<h:outputText value="姓名" />
+							<h:outputText value="帐号" />
 						</f:facet>
-						<h:outputText value="#{ss.name}" />
+						<h:outputText value="#{ss.account}" />
 					</p:column>
 					<p:column >
 						<f:facet name="header">
-							<h:outputText value="年龄" />
+							<h:outputText value="密码" />
 						</f:facet>
-						<h:outputText value="#{ss.age}" />
+						<h:outputText value="#{ss.password}" />
+					</p:column>
+					<p:column >
+						<f:facet name="header">
+							<h:outputText value="真实姓名" />
+						</f:facet>
+						<h:outputText value="#{ss.realname}" />
+					</p:column>
+					<p:column >
+						<f:facet name="header">
+							<h:outputText value="性别" />
+						</f:facet>
+						<h:outputText value="#{ss.sex}" />
+					</p:column>
+					<p:column >
+						<f:facet name="header">
+							<h:outputText value="Email" />
+						</f:facet>
+						<h:outputText value="#{ss.email}" />
+					</p:column>
+					<p:column >
+						<f:facet name="header">
+							<h:outputText value="地址" />
+						</f:facet>
+						<h:outputText value="#{ss.password}" />
+					</p:column>
+					
+					<p:column >
+						<f:facet name="header">
+							<h:outputText value="有效" />
+						</f:facet>
+						<h:outputText value="#{ss.usable eq 'Y'?'是':'否' }" />
+					</p:column>
+					<p:column >
+						<f:facet name="header">
+							<h:outputText value="创建人" />
+						</f:facet>
+						<h:outputText value="#{ss.createBy}" />
+					</p:column>
+					<p:column >
+						<f:facet name="header">
+							<h:outputText value="创建时间" />
+						</f:facet>
+						<h:outputText value="#{ss.createTime}" />
 					</p:column>
 					
 					<p:column style="text-align: center;width:5%">
@@ -235,234 +130,7 @@
 					</p:column>
 				</p:dataTable>
 				
-				<p:dataTable var="ss" value="#{tableBean.list}"   
-					paginatorPosition="bottom" rowIndexVar="index" paginator="true"
-					rows="10"
-					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}" 
-					currentPageReportTemplate="#{component.rowCount == 0 ? '0/0' : '{currentPage}/{totalPages}'} "
-					rowStyleClass="#{index mod 2 == 1 ? 'lazy_datatable_row' : null}"
-					style="margin-top: 5px;" emptyMessage="没有数据" >
-
-					<f:facet name="header">
-						列表
-						<div style="text-align: right; position: relative; margin: -13px 0px 0px 0px; vertical-align: middle">
-							<p:commandButton value="添加" icon="ui-icon ui-icon-plus"  
-								 />
-						</div>
-					</f:facet>
-					<p:column style="width:5%;">
-						<f:facet name="header">
-							<h:outputText value="ID" />
-						</f:facet>
-						<h:outputText value="#{ss.id}" />
-					</p:column>
-					<p:column style="width:15%;">
-						<f:facet name="header">
-							<h:outputText value="姓名" />
-						</f:facet>
-						<h:outputText value="#{ss.name}" />
-					</p:column>
-					<p:column >
-						<f:facet name="header">
-							<h:outputText value="年龄" />
-						</f:facet>
-						<h:outputText value="#{ss.age}" />
-					</p:column>
-					
-					<p:column style="text-align: center;width:5%">
-						<f:facet name="header">
-							<h:outputText value="操作" />
-						</f:facet>
-						<p:commandButton 
-							icon="ui-icon ui-icon-pencil" title="编辑" 
-							 style="width:18px;height:18px;">
-							
-						</p:commandButton>
-					</p:column>
-				</p:dataTable>
 				
-				<p:dataTable var="ss" value="#{tableBean.list}"   
-					paginatorPosition="bottom" rowIndexVar="index" paginator="true"
-					rows="10"
-					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}" 
-					currentPageReportTemplate="#{component.rowCount == 0 ? '0/0' : '{currentPage}/{totalPages}'} "
-					rowStyleClass="#{index mod 2 == 1 ? 'lazy_datatable_row' : null}"
-					style="margin-top: 5px;" emptyMessage="没有数据" >
-
-					<f:facet name="header">
-						列表
-						<div style="text-align: right; position: relative; margin: -13px 0px 0px 0px; vertical-align: middle">
-							<p:commandButton value="添加" icon="ui-icon ui-icon-plus"  
-								 />
-						</div>
-					</f:facet>
-					<p:column style="width:5%;">
-						<f:facet name="header">
-							<h:outputText value="ID" />
-						</f:facet>
-						<h:outputText value="#{ss.id}" />
-					</p:column>
-					<p:column style="width:15%;">
-						<f:facet name="header">
-							<h:outputText value="姓名" />
-						</f:facet>
-						<h:outputText value="#{ss.name}" />
-					</p:column>
-					<p:column >
-						<f:facet name="header">
-							<h:outputText value="年龄" />
-						</f:facet>
-						<h:outputText value="#{ss.age}" />
-					</p:column>
-					
-					<p:column style="text-align: center;width:5%">
-						<f:facet name="header">
-							<h:outputText value="操作" />
-						</f:facet>
-						<p:commandButton 
-							icon="ui-icon ui-icon-pencil" title="编辑" 
-							 style="width:18px;height:18px;">
-							
-						</p:commandButton>
-					</p:column>
-				</p:dataTable>
-				
-				<p:dataTable var="ss" value="#{tableBean.list}"   
-					paginatorPosition="bottom" rowIndexVar="index" paginator="true"
-					rows="10"
-					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}" 
-					currentPageReportTemplate="#{component.rowCount == 0 ? '0/0' : '{currentPage}/{totalPages}'} "
-					rowStyleClass="#{index mod 2 == 1 ? 'lazy_datatable_row' : null}"
-					style="margin-top: 5px;" emptyMessage="没有数据" >
-
-					<f:facet name="header">
-						列表
-						<div style="text-align: right; position: relative; margin: -13px 0px 0px 0px; vertical-align: middle">
-							<p:commandButton value="添加" icon="ui-icon ui-icon-plus"  
-								 />
-						</div>
-					</f:facet>
-					<p:column style="width:5%;">
-						<f:facet name="header">
-							<h:outputText value="ID" />
-						</f:facet>
-						<h:outputText value="#{ss.id}" />
-					</p:column>
-					<p:column style="width:15%;">
-						<f:facet name="header">
-							<h:outputText value="姓名" />
-						</f:facet>
-						<h:outputText value="#{ss.name}" />
-					</p:column>
-					<p:column >
-						<f:facet name="header">
-							<h:outputText value="年龄" />
-						</f:facet>
-						<h:outputText value="#{ss.age}" />
-					</p:column>
-					
-					<p:column style="text-align: center;width:5%">
-						<f:facet name="header">
-							<h:outputText value="操作" />
-						</f:facet>
-						<p:commandButton 
-							icon="ui-icon ui-icon-pencil" title="编辑" 
-							 style="width:18px;height:18px;">
-							
-						</p:commandButton>
-					</p:column>
-				</p:dataTable>
-				
-				<p:dataTable var="ss" value="#{tableBean.list}"   
-					paginatorPosition="bottom" rowIndexVar="index" paginator="true"
-					rows="10"
-					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}" 
-					currentPageReportTemplate="#{component.rowCount == 0 ? '0/0' : '{currentPage}/{totalPages}'} "
-					rowStyleClass="#{index mod 2 == 1 ? 'lazy_datatable_row' : null}"
-					style="margin-top: 5px;" emptyMessage="没有数据" >
-
-					<f:facet name="header">
-						列表
-						<div style="text-align: right; position: relative; margin: -13px 0px 0px 0px; vertical-align: middle">
-							<p:commandButton value="添加" icon="ui-icon ui-icon-plus"  
-								 />
-						</div>
-					</f:facet>
-					<p:column style="width:5%;">
-						<f:facet name="header">
-							<h:outputText value="ID" />
-						</f:facet>
-						<h:outputText value="#{ss.id}" />
-					</p:column>
-					<p:column style="width:15%;">
-						<f:facet name="header">
-							<h:outputText value="姓名" />
-						</f:facet>
-						<h:outputText value="#{ss.name}" />
-					</p:column>
-					<p:column >
-						<f:facet name="header">
-							<h:outputText value="年龄" />
-						</f:facet>
-						<h:outputText value="#{ss.age}" />
-					</p:column>
-					
-					<p:column style="text-align: center;width:5%">
-						<f:facet name="header">
-							<h:outputText value="操作" />
-						</f:facet>
-						<p:commandButton 
-							icon="ui-icon ui-icon-pencil" title="编辑" 
-							 style="width:18px;height:18px;">
-							
-						</p:commandButton>
-					</p:column>
-				</p:dataTable>
-				<p:dataTable var="ss" value="#{tableBean.list}"   
-					paginatorPosition="bottom" rowIndexVar="index" paginator="true"
-					rows="10"
-					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}" 
-					currentPageReportTemplate="#{component.rowCount == 0 ? '0/0' : '{currentPage}/{totalPages}'} "
-					rowStyleClass="#{index mod 2 == 1 ? 'lazy_datatable_row' : null}"
-					style="margin-top: 5px;" emptyMessage="没有数据" >
-
-					<f:facet name="header">
-						列表
-						<div style="text-align: right; position: relative; margin: -13px 0px 0px 0px; vertical-align: middle">
-							<p:commandButton value="添加" icon="ui-icon ui-icon-plus"  
-								 />
-						</div>
-					</f:facet>
-					<p:column style="width:5%;">
-						<f:facet name="header">
-							<h:outputText value="ID" />
-						</f:facet>
-						<h:outputText value="#{ss.id}" />
-					</p:column>
-					<p:column style="width:15%;">
-						<f:facet name="header">
-							<h:outputText value="姓名" />
-						</f:facet>
-						<h:outputText value="#{ss.name}" />
-					</p:column>
-					<p:column >
-						<f:facet name="header">
-							<h:outputText value="年龄" />
-						</f:facet>
-						<h:outputText value="#{ss.age}" />
-					</p:column>
-					
-					<p:column style="text-align: center;width:5%">
-						<f:facet name="header">
-							<h:outputText value="操作" />
-						</f:facet>
-						<p:commandButton 
-							icon="ui-icon ui-icon-pencil" title="编辑" 
-							 style="width:18px;height:18px;">
-							
-						</p:commandButton>
-					</p:column>
-				</p:dataTable>
 			</h:form>
 		</p:panel>
 		<script type="text/javascript">
