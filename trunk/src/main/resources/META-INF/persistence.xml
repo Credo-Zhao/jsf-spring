@@ -3,5 +3,8 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
 	version="1.0">
 	<persistence-unit name="punit" transaction-type="RESOURCE_LOCAL">
+		<class>org.credo.base.entity.IdEntity</class>
+		<class>org.credo.base.entity.BaseEntity</class>
+		<class>org.credo.common.entity.Userinfo</class>
 	</persistence-unit>
 </persistence>

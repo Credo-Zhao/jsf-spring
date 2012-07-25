@@ -17,7 +17,7 @@
 		default-lazy-init="true">
 	<context:component-scan base-package="org.credo"/>
 	
-	<!-- datasource -->
+	<!-- datasource,context:property-placeholder让spring解析到属性文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties"/>
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClassName}"/>
