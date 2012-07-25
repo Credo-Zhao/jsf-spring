@@ -61,7 +61,7 @@
 			
 			<div id="top_down_right">
 					<div  style="margin-top: 8px;"> <img src="#{request.contextPath}/images/user.gif" alt="" />
-					当前用户：<h:outputText value="LionCredo " />
+					当前用户：<h:outputText value="#{loginBean.userinfo.realname eq null?loginBean.userinfo.account:loginBean.userinfo.realname }" />
 					<img src="#{request.contextPath}/images/icons/exit.gif" />
 					<a href="faces/login.xhtml" >注销</a></div>
 			</div>
@@ -69,52 +69,74 @@
 		<div id="globalbottomdiv">
 				<h:form id="menuTemId">
 				<p:megaMenu>
-					<p:submenu label="TV" icon="ui-icon-check">
+					<p:submenu label="　用户管理" >
 						<p:column>
-							<p:submenu label="TV.1">
-								<p:menuitem value="TV.1.1" url="#" />
-								<p:menuitem value="TV.1.2" url="#" />
+							<p:submenu label="用户信息">
+								<p:menuitem value="用户信息管理" url="#" />
 							</p:submenu>
-							<p:submenu label="TV.2">
-								<p:menuitem value="TV.2.1" url="#" />
-								<p:menuitem value="TV.2.2" url="#" />
-								<p:menuitem value="TV.2.3" url="#" />
+							<p:submenu label="用户权限">
+								<p:menuitem value="用户权限管理" url="#" />
 							</p:submenu>
-							<p:submenu label="TV.3">
-								<p:menuitem value="TV.3.1" url="#" />
-								<p:menuitem value="TV.3.2" url="#" />
-							</p:submenu>
-						</p:column>
-
-						<p:column>
-							<p:submenu label="TV.4">
-								<p:menuitem value="TV.4.1" url="#" />
-								<p:menuitem value="TV.4.2" url="#" />
-							</p:submenu>
-							<p:submenu label="TV.5">
-								<p:menuitem value="TV.5.1" url="#" />
-								<p:menuitem value="TV.5.2" url="#" />
-								<p:menuitem value="TV.5.3" url="#" />
-							</p:submenu>
-						</p:column>
-
-						<p:column>
-							<strong>Sopranos</strong>
-							<p:graphicImage value="/images/sopranos/sopranos1.jpg"
-								width="200" />
 						</p:column>
 					</p:submenu>
 
-					<p:submenu label="Sports" icon="ui-icon-document">
+					<p:submenu label="　基础功能" >
+						<p:column>
+							<p:submenu label="常用链接">
+								<p:menuitem value="常用链接管理" url="#" />
+							</p:submenu>
+							<p:submenu label="常用功能">
+								<p:menuitem value="常用功能管理" url="#" />
+							</p:submenu>
+						</p:column>
 					</p:submenu>
 
-					<p:submenu label="Entertainment" icon="ui-icon-pencil">
+					<p:submenu label="　报表查询" >
+						<p:column>
+							<p:submenu label="汇总" >
+								<p:menuitem value="资金汇总查询" url="#" />
+								<p:menuitem value="税额汇总查询" url="#" />
+								<p:menuitem value="货量汇总查询" url="#" />
+							</p:submenu>
+							<p:submenu label="增值税">
+								<p:menuitem value="增值税税率变化查询" url="#" />
+								<p:menuitem value="增值税税额查询" url="#" />
+							</p:submenu>
+						</p:column>
 					</p:submenu>
 
-					<p:submenu label="Tech" icon="ui-icon-contact">
+					<p:submenu label="　会议室预定" >
+						<p:column>
+							<p:submenu label="预定">
+								<p:menuitem value="会议室预定" url="#" />
+							</p:submenu>
+							<p:submenu label="历史" >
+								<p:menuitem value="会议室预定历史查询" url="#" />
+							</p:submenu>
+						</p:column>
 					</p:submenu>
-					<p:menuitem value="Quit" url="http://www.primefaces.org"
-						icon="ui-icon-close" />
+					
+					<p:submenu label="　书籍预定" >
+						<p:column>
+							<p:submenu label="预定图书">
+								<p:menuitem value="预定图书" url="#" />
+							</p:submenu>
+							<p:submenu label="总览" >
+								<p:menuitem value="公司书籍总览" url="#" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+					
+					<p:submenu label="　活动查询" >
+						<p:column>
+							<p:submenu label="最新活动">
+								<p:menuitem value="最新活动查询" url="#" />
+							</p:submenu>
+							<p:submenu label="历史活动" >
+								<p:menuitem value="历史活动查询" url="#" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
 				</p:megaMenu>
 			</h:form>
 			</div>
