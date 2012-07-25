@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/ui.xhtml">
+	<ui:define name="styleAndScript">
+	</ui:define>
+	<ui:define name="content">
+		
+		<p:panel styleClass="panel1">
+			<h:form prependId="false" id="taxFormId">
+				<p:growl id="growl" showDetail="false" life="3000" />
+				<div>
+					<p:breadCrumb>
+						<p:menuitem value="首页" url="/faces/index.xhtml" />
+						<p:menuitem value="用户管理" url="#" />
+						<p:menuitem value="用户信息管理" url="/faces/usermanage/userdata/index.xhtml" />
+					</p:breadCrumb>
+				</div>
+
+				<div class="style1" style="margin-top: 5px; margin-bottom: 5px;">
+					<h:panelGrid columns="8" id="serachPanelId" style="margin-top: 5px; margin-bottom: 5px;" 
+						columnClasses="column1,column2,column1,column2,column1,column2,column1,column2">
+						<h:outputText value="机关名称：" />
+						<p:inputText  />
+
+						<h:outputText value="地址：" />
+						<p:inputText  />
+						
+						
+					</h:panelGrid>
+
+					<div align="right" style="margin-top: 5px; margin-bottom: 5px;">
+						<p:commandButton value="查询" icon="ui-icon ui-icon-search" style="margin-right:5px" actionListener="#{tableBean.queryUserInfo()}" update=":taxFormId:tableId"/>
+						<p:commandButton value="重置" icon="ui-icon ui-icon-cancel" style="margin-right:13px" />
+					</div>
+				</div>
+			
+				
+				<p:dataTable var="ss" value="#{tableBean.list}"   id="tableId" 
+					paginatorPosition="bottom" rowIndexVar="index" paginator="true"
+					rows="10"
+					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}" 
+					currentPageReportTemplate="#{component.rowCount == 0 ? '0/0' : '{currentPage}/{totalPages}'} "
+					rowStyleClass="#{index mod 2 == 1 ? 'lazy_datatable_row' : null}"
+					style="margin-top: 5px;" emptyMessage="没有数据" >
+
+					<f:facet name="header">
+						用户信息列表
+						<div style="text-align: right; position: relative; margin: -13px 0px 0px 0px; vertical-align: middle">
+							<p:commandButton value="添加" icon="ui-icon ui-icon-plus"  
+								 />
+						</div>
+					</f:facet>
+					<p:column style="text-align: center;width:18px;">
+						<f:facet name="header">
+							<h:outputText value="ID" />
+						</f:facet>
+						<h:outputText value="#{ss.id}" />
+					</p:column>
+					<p:column >
+						<f:facet name="header">
+							<h:outputText value="帐号" />
+						</f:facet>
+						<h:outputText value="#{ss.account}" />
+					</p:column>
+					<p:column >
+						<f:facet name="header">
+							<h:outputText value="密码" />
+						</f:facet>
+						<h:outputText value="#{ss.password}" />
+					</p:column>
+					<p:column >
+						<f:facet name="header">
+							<h:outputText value="真实姓名" />
+						</f:facet>
+						<h:outputText value="#{ss.realname}" />
+					</p:column>
+					<p:column style="text-align: center;width:18px;">
+						<f:facet name="header" >
+							<h:outputText value="性别" />
+						</f:facet>
+						<h:outputText value="#{ss.sex}" />
+					</p:column>
+					<p:column >
+						<f:facet name="header">
+							<h:outputText value="Email" />
+						</f:facet>
+						<h:outputText value="#{ss.email}" />
+					</p:column>
+					<p:column >
+						<f:facet name="header">
+							<h:outputText value="地址" />
+						</f:facet>
+						<h:outputText value="#{ss.password}" />
+					</p:column>
+					<p:column >
+						<f:facet name="header">
+							<h:outputText value="创建人" />
+						</f:facet>
+						<h:outputText value="#{ss.createBy}" />
+					</p:column>
+					<p:column style="text-align: center;width:75px;">
+						<f:facet name="header">
+							<h:outputText value="创建时间" />
+						</f:facet>
+						<h:outputText value="#{ss.createTime}" />
+					</p:column>
+					<p:column style="text-align: center;width:18px;">
+						<f:facet name="header">
+							<h:outputText value="有效" />
+						</f:facet>
+						<h:outputText value="#{ss.usable eq 'Y'?'是':'否' }" />
+					</p:column>
+					
+					<p:column style="text-align: center;width:18px;">
+						<f:facet name="header">
+							<h:outputText value="操作" />
+						</f:facet>
+						<p:commandButton 
+							icon="ui-icon ui-icon-pencil" title="编辑" 
+							 style="width:18px;height:18px;">
+							
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+				
+				
+			</h:form>
+		</p:panel>
+		<script type="text/javascript">
+			function handleSaveRequest(xhr, status, args) {
+				if (args.addInfo == "yes") {
+					thxAddDlgVar.hide();
+				}
+			}
+
+			function handleUpdateRequest(xhr, status, args) {
+				if (args.modifyInfo == "yes") {
+					thxUpDlgVar.hide();
+				}
+			}
+		</script>
+		
+	</ui:define>
+</ui:composition>
+
