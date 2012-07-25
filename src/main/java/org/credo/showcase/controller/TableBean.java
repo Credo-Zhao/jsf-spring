@@ -31,7 +31,6 @@ public class TableBean implements Serializable{
 	
 	
 	public TableBean(){
-		System.out.println("进入构造方法!");
 	}
 
 	public List<Userinfo> getList() {
