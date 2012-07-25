@@ -6,14 +6,16 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:applicationContext.xml</param-value>
   </context-param>
+  <!-- ContextLoaderListener预设会读取applicationContext.xml(spring默认配置文件)如果你有其他的配置文件就要在<context-param>中指定 -->
   <listener>
     <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
   </listener>
+  <!--使Spring支持request与session的scope,如:<bean id="loginAction" class="com.foo.LoginAction" scope="request"/> -->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   
-  
+  <!-- JSF -->
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -28,9 +30,9 @@
         <param-name>primefaces.THEME</param-name>
         <param-value>#{guestPreferences.theme}</param-value>
     </context-param>
-    
-  
+  <!-- session过期 -->
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>
 </web-app>
+
