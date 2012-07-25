@@ -108,15 +108,15 @@
 				</f:facet>
 				
 				<h:outputLabel value="用户名："  />
-				<p:inputText />
+				<p:inputText value="#{loginBean.loginAccount}"/>
 				
 				<h:outputLabel value="密　码："  />
-				<p:inputText />
+				<p:password value="#{loginBean.loginPassword}" />  
 				
 				<f:facet name="footer">
 				<div align="right">
-					<p:commandButton value="登录"  style="margin-right:5px" />
-					<p:commandButton value="重置"  />
+					<h:commandButton value="登录"  style="margin-right:5px" action="#{loginBean.loginProcess()}"/>
+					<h:commandButton value="重置"  type="reset" update="loginForm" style="margin-right:17px"/>
 				</div>
 				</f:facet>
 			</h:panelGrid>
