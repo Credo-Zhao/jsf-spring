@@ -16,7 +16,7 @@ Date: 2012-07-25 14:35:55
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `userinfo`
+--userinfo 表结构
 -- ----------------------------
 DROP TABLE IF EXISTS `userinfo`;
 CREATE TABLE `userinfo` (
