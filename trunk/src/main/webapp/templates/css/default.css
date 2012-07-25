@@ -108,7 +108,7 @@ img.right {
 }
 /* Page */
 #page {
-	padding: 3px 0px;
+	padding: 1px 0px;
 	background: #FFFFFF;
 }
 
@@ -294,13 +294,13 @@ img.right {
 /*dataTable的行样式,
 写法:rowStyleClass="#{index mod 2 == 1 ? 'lazy_datatable_row' : 'lazy_datatable_row2'}"
 */
-.lazy_datatable_row {
+/* .lazy_datatable_row {
 	background: #DEEDF7;
 	height: 18px;
 }
 .lazy_datatable_row2 {
 	height: 18px;
-}
+} */
 .bottom {
 	position: absolute;
 	left: 0px;
