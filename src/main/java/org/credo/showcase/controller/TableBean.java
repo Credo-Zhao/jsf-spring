@@ -4,34 +4,40 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.annotation.Resource;
 
-import org.credo.showcase.controller.vo.TableVO;
+import org.credo.common.entity.Userinfo;
+import org.credo.showcase.service.TableService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 //可以使用spring来管理
-//@Controller
-//@Scope("view")
-@ManagedBean
-@ViewScoped
+//@ManagedBean
+//@ViewScoped
+@Controller
+@Scope("view")
 public class TableBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private List<TableVO> list=new ArrayList<TableVO>();
+	@Resource private TableService tableService;
+	
+	private List<Userinfo> list=new ArrayList<Userinfo>();
+	
+	
+	public void queryUserInfo(){
+		list=this.tableService.queryAllUserInfo();
+	}
+	
 	
 	public TableBean(){
-		list.add(new TableVO(1, "赵谦", "25"));
-		list.add(new TableVO(2, "LionCredo", "25"));
-		list.add(new TableVO(3, "forjava", "25"));
+		System.out.println("进入构造方法!");
 	}
 
-	public List<TableVO> getList() {
+	public List<Userinfo> getList() {
 		return list;
 	}
-	public void setList(List<TableVO> list) {
+	public void setList(List<Userinfo> list) {
 		this.list = list;
 	}
 }
