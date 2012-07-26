@@ -38,25 +38,27 @@
 
 		<div id="header" class="ui-widget ui-widget-header">
 			<div >
-			<h:form>
+			<h:form id="mainFormId">
 				<p:spacer width="5px"></p:spacer>
 				<h:outputLabel value="当前用户：" />
 				<h:outputText value="#{loginBean.userinfo.realname eq null?loginBean.userinfo.account:loginBean.userinfo.realname } " />
 				<p:spacer width="9px"></p:spacer>
-				<p:commandLink value="　个人资料修改　" /> 
+				<p:commandLink value="　个人资料修改　" oncomplete="modifyAboutMeDlgVar.show()" actionListener="#{loginBean.resetForm()}" update=":modifyAboutMeFormId" /> 
 				<h:outputLabel value=" -- " />
 				<p:commandLink value="　短消息　" /> 
 				<h:outputLabel value=" -- " />
 				<p:commandLink value="　返回首页　" /> 
 				<h:outputLabel value=" -- " />
-				<p:commandLink value="　注销　" onclick="confirmation.show()"/> 
-				<h:outputLabel value="--" />
+				<p:commandLink value="　注销　" onclick="confirmation.show()" /> 
+				<a href="/base/faces/login.xhtml" >　注销　</a>
 				
 				<p:confirmDialog message="您确定要注销吗?" header="确认注销" severity="alert" widgetVar="confirmation">
 					<p:commandButton value="确定"  oncomplete="confirmation.hide()" />
 					<p:commandButton value="取消"  onclick="confirmation.hide()" type="button" />
 				</p:confirmDialog>
-				</h:form>
+				
+			</h:form>
+				<ui:include src="modifyUserinfo.xhtml" />
 			</div>
 			<div id="top_down_right">
 				<h:form>
@@ -73,7 +75,6 @@
                             #{t.name}
                         </p:column>
 					</p:themeSwitcher>
-					
 				</h:form>
 			</div>
 			

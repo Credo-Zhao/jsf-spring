@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<p:dialog header="个人资料修改" widgetVar="modifyAboutMeDlgVar" showEffect="fade" 
+		hideEffect="fade" modal="true" resizable="false" id="modifyAboutMeDlgId">
+		<h:form id="modifyAboutMeFormId" prependId="false">
+			<p:messages id="modifyAboutMeMsgId" showDetail="true" />
+			
+			<h:panelGrid columns="4"
+				columnClasses="column1,column2,column1,column2">
+				
+				<h:outputText value="新密码：" />
+				<h:panelGroup>
+					<p:inputText value="#{loginBean.newPwdFirst}"/>
+				</h:panelGroup>
+				
+				<h:outputText value="重复密码：" />
+				<h:panelGroup>
+					<p:inputText value="#{loginBean.newPwdSecond}"/>
+				</h:panelGroup>
+				
+				<h:outputText value="真实姓名：" />
+					<p:inputText value="#{loginBean.userinfo.realname}"/>
+				
+				<h:outputText value="Email：" />
+					<p:inputText value="#{loginBean.userinfo.email}"/>
+				
+				<h:outputText value="地址：" />
+				<p:inputText value="#{loginBean.userinfo.address}" />
+				
+				<h:outputText value="性别： " />
+					<p:selectOneMenu value="#{loginBean.userinfo.sex}">
+						<f:selectItem itemLabel="请选择" itemValue="" />
+						<f:selectItem itemLabel="男" itemValue="男" />
+						<f:selectItem itemLabel="女" itemValue="女" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				
+			
+
+			<div align="center">
+				<p:commandButton value="提交"  icon="ui-icon ui-icon-check"  style="margin-right:5px"  
+					actionListener="#{loginBean.modifyAboutMe()}"   
+					oncomplete="aboutMeSaveRequest(xhr, status, args);"  
+					update=":modifyAboutMeFormId:modifyAboutMeMsgId,:modifyAboutMeFormId,:mainFormId"  />
+				<p:commandButton type="button" value="取消"  onclick="modifyAboutMeDlgVar.hide()"  icon="ui-icon ui-icon-cancel" />
+			</div>
+
+		</h:form>
+		<script type="text/javascript">
+			function aboutMeSaveRequest(xhr, status, args) {
+				if (args.aboutMeAddInfo == "yes") {
+					modifyAboutMeDlgVar.hide();
+				}
+			}
+		</script>
+	</p:dialog>
+</ui:composition>
