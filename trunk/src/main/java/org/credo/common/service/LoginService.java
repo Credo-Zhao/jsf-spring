@@ -3,11 +3,10 @@ package org.credo.common.service;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-import org.credo.common.entity.Userinfo;
+import org.credo.base.service.BaseService;
+import org.credo.model.Userinfo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>Project: Credo's Base</p>
@@ -15,16 +14,14 @@ import org.springframework.stereotype.Service;
  * <p>Copyright (c) 2012 LionCredo.All Rights Reserved.</p>
  * @author <a href="zhaoqianjava@foxmail.com">LionCredo</a>
  */
-@SuppressWarnings("unchecked")
+@SuppressWarnings({ "unchecked", "rawtypes" })
+@Transactional
 @Service
-public class LoginService implements Serializable{
+public class LoginService extends BaseService implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	@PersistenceContext EntityManager em;
-	
 	/**
-	 * @param loginAccount
-	 * @param password
+	 * @function 登录查询数据库用户是否存在.返回list结果集在Bean里进行控制.
 	 * @return List<Userinfo>
 	 */
 	public List<Userinfo> loginQueryUserByAccount(String loginAccount,String password){
@@ -32,4 +29,9 @@ public class LoginService implements Serializable{
 		List<Userinfo> list=this.em.createQuery(jpql).setParameter("account", loginAccount).setParameter("password", password).getResultList();
 		return list;
 	}
+	
+	public void updateUserinfo(Userinfo u){
+		this.em.merge(u);
+	}
+	
 }
