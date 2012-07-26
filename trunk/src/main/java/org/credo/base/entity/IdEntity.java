@@ -16,9 +16,7 @@ import javax.persistence.MappedSuperclass;
  */
 @MappedSuperclass
 public class IdEntity implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = -8107787520509353165L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID", nullable = false, updatable = false)
