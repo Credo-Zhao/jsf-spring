@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.credo.common.entity.Userinfo;
+import org.credo.model.Userinfo;
 import org.credo.showcase.service.TableService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
