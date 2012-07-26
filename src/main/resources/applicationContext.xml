@@ -44,7 +44,7 @@
 		</property>
 		<property name="jpaPropertyMap">
 			<map>
-				<entry key="dialect" value="tool.HibernateForMySQLDialect"/>
+				<!-- <entry key="dialect" value="tool.HibernateForMySQLDialect"/> -->
 				<entry key="hibernate.hbm2ddl.auto" value="update"/>
                 <entry key="hibernate.show_sql" value="true" />
             </map>

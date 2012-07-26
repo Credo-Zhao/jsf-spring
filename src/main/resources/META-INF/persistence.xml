@@ -5,6 +5,6 @@
 	<persistence-unit name="punit" transaction-type="RESOURCE_LOCAL">
 		<class>org.credo.base.entity.IdEntity</class>
 		<class>org.credo.base.entity.BaseEntity</class>
-		<class>org.credo.common.entity.Userinfo</class>
+		<class>org.credo.model.Userinfo</class>
 	</persistence-unit>
 </persistence>
