@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<p:dialog header="#{userinfoBean.dialogHeadTxt}" widgetVar="userdataDlgVar" showEffect="fade" 
+		hideEffect="fade" modal="true" resizable="false" id="userdataDlgId">
+		<h:form id="userdataFormId" prependId="false">
+			<p:messages id="userdataMsgId" showDetail="true" />
+			<p:growl id="userdataGrowlId" life="5000"/>
+			<h:panelGrid columns="4"
+				columnClasses="column1,column2,column1,column2">
+				
+				<h:outputText value="用户帐号：" />
+				<p:inputText value="#{userinfoBean.userinfo.account}"/>
+				
+				<h:outputText value="用户密码：" />
+				<p:inputText value="#{userinfoBean.userinfo.password}"/>
+				
+				<h:outputText value="真实姓名：" />
+				<p:inputText value="#{userinfoBean.userinfo.realname}"/>
+				
+				<h:outputText value="用户年龄：" />
+				<p:inputText value="#{userinfoBean.userinfo.realname}"/>
+				
+				<h:outputText value="电子邮箱：" />
+				<p:inputText value="#{userinfoBean.userinfo.email}"/>
+				
+				<h:outputText value="用户地址：" />
+				<p:inputText value="#{userinfoBean.userinfo.address}" />
+
+				<h:outputText value="是否可用： " />
+				<p:selectOneRadio value="#{userinfoBean.userinfo.usable==null?'Y':userinfoBean.userinfo.usable}">
+					<f:selectItem itemLabel="可用" itemValue="Y" />
+					<f:selectItem itemLabel="禁用" itemValue="N" />
+				</p:selectOneRadio>
+
+				<h:outputText value="用户性别： " />
+				<p:selectOneRadio value="#{userinfoBean.userinfo.sex==null?'男':userinfoBean.userinfo.sex}">
+					<f:selectItem itemLabel="男" itemValue="男" />
+					<f:selectItem itemLabel="女" itemValue="女" />
+				</p:selectOneRadio>
+				</h:panelGrid>
+				
+			<p:spacer width="10px" height="10px"></p:spacer>
+
+			<div align="center">
+				<p:commandButton value="提交"  icon="ui-icon ui-icon-check"  style="margin-right:5px"  
+					actionListener="#{loginBean.modifyAboutMe()}"   
+					oncomplete="aboutMeSaveRequest(xhr, status, args);"  
+					update=":userdataFormId:userdataMsgId,:userdataFormId"  />
+				<p:commandButton type="button" value="取消"  onclick="userdataDlgVar.hide()"  icon="ui-icon ui-icon-cancel" />
+			</div>
+
+		</h:form>
+		<script type="text/javascript">
+			function aboutMeSaveRequest(xhr, status, args) {
+				if (args.aboutMeAddInfo == "yes") {
+					modifyAboutMeDlgVar.hide();
+				}
+			}
+		</script>
+	</p:dialog>
+</ui:composition>
