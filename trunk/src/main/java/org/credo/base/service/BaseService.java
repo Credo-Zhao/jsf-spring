@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
  * <p>Copyright (c) 2012 LionCredo.All Rights Reserved.</p>
  * @author <a href="zhaoqianjava@foxmail.com">LionCredo</a>
  */
-@SuppressWarnings("unchecked")
 public abstract class BaseService<T extends IdEntity> {
 	
 	@PersistenceContext	protected EntityManager em;
@@ -26,11 +25,18 @@ public abstract class BaseService<T extends IdEntity> {
 	 * @function 查询实体所有数据
 	 * @param t
 	 * @return
+	 * @throws Exception 
 	 */
-	public List<T> queryAll(T t)  {
-		String jpql = "SELECT t FROM T:T";
-		List<T> list = new ArrayList<T>();
-		list = this.em.createQuery(jpql).setParameter("T", t).getResultList();
+	@SuppressWarnings({ "rawtypes" })
+	public List queryAll(String tableName) throws Exception {
+		String jpql = "SELECT t FROM " + tableName+" t";
+		List list=new ArrayList();
+		try {
+			list=this.em.createQuery(jpql).getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 		return list;
 	}
 	
