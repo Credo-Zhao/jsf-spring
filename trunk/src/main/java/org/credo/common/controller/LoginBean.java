@@ -7,10 +7,12 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import org.credo.common.entity.Userinfo;
 import org.credo.common.service.LoginService;
+import org.credo.model.Userinfo;
+import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
@@ -34,12 +36,17 @@ public class LoginBean implements Serializable{
 	private String loginAccount;
 	private String loginPassword;
 	private Userinfo userinfo;
+	private String newPwdFirst;
+	private String newPwdSecond;
 	
 	/**
 	 * 登录处理
 	 * @return faces-config所需字符串
 	 */
 	public String loginProcess(){
+		log.info("进入Bean方法!");
+		log.warn(loginAccount);
+		log.warn(loginPassword);
 		List<Userinfo> userinfoList=loginService.loginQueryUserByAccount(loginAccount, loginPassword);
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		if(null==userinfoList||userinfoList.size()<1){
@@ -56,9 +63,41 @@ public class LoginBean implements Serializable{
 		map.put("userinfo", userinfo);
 		this.userinfo=userinfo;
 		log.info("SUCCESSFUL!");
+		log.info("人名:"+userinfo.getRealname());
+		log.info("人名:"+userinfo.getId());
 		return "LoginSuccess";
 	}
 	
+	public void resetForm(){
+		this.newPwdFirst=null;
+		this.newPwdSecond=null;
+	}
+	
+	/**
+	 * 用户修改资料,修改密码
+	 */
+	public void modifyAboutMe(){
+		log.info("用户修改资料,修改密码");
+		if(null!=this.newPwdFirst && !("").equals(this.newPwdFirst.trim())&&null!=this.newPwdSecond && !("").equals(this.newPwdSecond.trim())){
+			if(this.newPwdFirst.equals(this.newPwdSecond)){
+				this.userinfo.setPassword(newPwdFirst);
+			}else{
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"新密码错误:","两次输入的密码不一致!"));
+				return;
+			}
+		}
+		try {
+			log.info("人名:"+userinfo.getRealname());
+			loginService.updateUserinfo(userinfo);
+			log.info("人名:"+userinfo.getRealname());
+		} catch (Exception e) {
+			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"数据库错误:","数据库更新数据失败!请联系管理员!"));
+			return;
+		}
+		RequestContext.getCurrentInstance().addCallbackParam("aboutMeAddInfo", "yes");
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("成功","更新用户资料成功，请查询并确认！"));
+	}
 	
 	
 	public String getLoginAccount() {
@@ -84,5 +123,21 @@ public class LoginBean implements Serializable{
 	}
 	public void setUserinfo(Userinfo userinfo) {
 		this.userinfo = userinfo;
+	}
+
+	public String getNewPwdFirst() {
+		return newPwdFirst;
+	}
+
+	public void setNewPwdFirst(String newPwdFirst) {
+		this.newPwdFirst = newPwdFirst;
+	}
+
+	public String getNewPwdSecond() {
+		return newPwdSecond;
+	}
+
+	public void setNewPwdSecond(String newPwdSecond) {
+		this.newPwdSecond = newPwdSecond;
 	}
 }
