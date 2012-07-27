@@ -1,14 +1,18 @@
 package org.credo.base.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.credo.base.entity.IdEntity;
+import org.credo.base.entity.BaseEntity;
+import org.credo.model.Userinfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>Project: Credo's Base</p>
@@ -16,7 +20,8 @@ import org.slf4j.LoggerFactory;
  * <p>Copyright (c) 2012 LionCredo.All Rights Reserved.</p>
  * @author <a href="zhaoqianjava@foxmail.com">LionCredo</a>
  */
-public abstract class BaseService<T extends IdEntity> {
+@Transactional
+public abstract class BaseService<T extends BaseEntity> {
 	
 	@PersistenceContext	protected EntityManager em;
 	protected Logger log = LoggerFactory.getLogger(getClass());
@@ -29,7 +34,8 @@ public abstract class BaseService<T extends IdEntity> {
 	 */
 	@SuppressWarnings({ "rawtypes" })
 	public List queryAll(String tableName) throws Exception {
-		String jpql = "SELECT t FROM " + tableName+" t";
+		String jpql = "SELECT t FROM "+tableName+" t";
+		System.out.println("jpql"+jpql);
 		List list=new ArrayList();
 		try {
 			list=this.em.createQuery(jpql).getResultList();
@@ -46,7 +52,10 @@ public abstract class BaseService<T extends IdEntity> {
 	 * @throws Exception
 	 */
 	public void update(T t) throws Exception {
+		String currentUser=((Userinfo)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userinfo")).getAccount();
 		try {
+			t.setUpdateBy(currentUser);
+			t.setUpdateTime(new Date());
 			em.merge(t);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,7 +68,12 @@ public abstract class BaseService<T extends IdEntity> {
 	 * @throws Exception
 	 */
 	public void insert(T t) throws Exception {
+		String currentUser=((Userinfo)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userinfo")).getAccount();
 		try {
+			t.setCreateBy(currentUser);
+			t.setCreateTime(new Date());
+			t.setUpdateBy(currentUser);
+			t.setUpdateTime(new Date());
 			em.persist(t);
 		} catch (Exception e) {
 			e.printStackTrace();

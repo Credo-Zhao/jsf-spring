@@ -60,9 +60,6 @@ public class LoginBean implements Serializable{
 		Map<String, Object> map =facesContext.getExternalContext().getSessionMap();
 		map.put("userinfo", userinfo);
 		this.userinfo=userinfo;
-		log.info("SUCCESSFUL!");
-		log.info("人名:"+userinfo.getRealname());
-		log.info("人名:"+userinfo.getId());
 		return "LoginSuccess";
 	}
 	
@@ -71,11 +68,20 @@ public class LoginBean implements Serializable{
 		this.newPwdSecond=null;
 	}
 	
+
+	/**
+	 * @return 获取当前用户的信息
+	 */
+	public Userinfo getCurrentUserinfo(){
+		Userinfo currentUserinfo=this.userinfo;
+		return currentUserinfo;
+	}
+	
 	/**
 	 * 用户修改资料,修改密码
 	 */
+	@SuppressWarnings("unchecked")
 	public void modifyAboutMe(){
-		log.info("用户修改资料,修改密码");
 		if(null!=this.newPwdFirst && !("").equals(this.newPwdFirst.trim())&&null!=this.newPwdSecond && !("").equals(this.newPwdSecond.trim())){
 			if(this.newPwdFirst.equals(this.newPwdSecond)){
 				this.userinfo.setPassword(newPwdFirst);
@@ -85,9 +91,7 @@ public class LoginBean implements Serializable{
 			}
 		}
 		try {
-			log.info("人名:"+userinfo.getRealname());
-			loginService.updateUserinfo(userinfo);
-			log.info("人名:"+userinfo.getRealname());
+			loginService.update(userinfo);
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"数据库错误:","数据库更新数据失败!请联系管理员!"));

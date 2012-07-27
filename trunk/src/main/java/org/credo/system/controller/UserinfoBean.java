@@ -6,24 +6,32 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import org.credo.model.Userinfo;
 import org.credo.system.service.UserinfoService;
+import org.primefaces.context.RequestContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 @SuppressWarnings({"unchecked"})
 @Controller
-@Scope("request")
+@Scope("view")
 public class UserinfoBean implements Serializable{
 
+	protected Logger log = LoggerFactory.getLogger(getClass());
 	private static final long serialVersionUID = 1L;
 	@Resource UserinfoService userinfoService;
 	
 	private String queryBuilderAccount;
 	private List<Userinfo> list=new ArrayList<Userinfo>();
-	private Userinfo userinfo;
-	private String dialogHeadTxt;
+	private Userinfo userinfo=new Userinfo();
+	private boolean isModify=true;
+	private String sex;
+	private String usable;
 	
 	@PostConstruct
 	public void queryUserInfo(){
@@ -34,30 +42,31 @@ public class UserinfoBean implements Serializable{
 		}
 	}
 	
-	public void addUserinfo(){
+	public void sumbitDlgData(){
+		userinfo.setSex(sex);
+		userinfo.setUsable(usable);
 		try {
-			this.userinfoService.insert(userinfo);
+			if (isModify) {
+				this.userinfoService.update(userinfo);
+			} else {
+				this.userinfoService.insert(userinfo);
+				this.isModify=true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "数据库错误,请联系管理员!", ""));
+			return;
 		}
+		queryUserInfo();
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("成功!", ""));
+		RequestContext.getCurrentInstance().addCallbackParam("aboutMeAddInfo", "Y");
 	}
 	
-	public void modifyUserinfo(){
-		try {
-			this.userinfoService.update(userinfo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void reset(boolean isAdd){
-		if(isAdd){
-			this.dialogHeadTxt="添加新用户";
-		}else{
-			this.dialogHeadTxt="修改用户信息";
-		}
-		this.queryBuilderAccount="";
+	public void resetDlg(){
 		this.userinfo=new Userinfo();
+		this.isModify=false;
+		this.sex=null;
+		this.usable="";
 	}
 	
 	public List<Userinfo> getList() {
@@ -72,20 +81,28 @@ public class UserinfoBean implements Serializable{
 	public void setUserinfo(Userinfo userinfo) {
 		this.userinfo = userinfo;
 	}
-
-	public String getDialogHeadTxt() {
-		return dialogHeadTxt;
-	}
-
-	public void setDialogHeadTxt(String dialogHeadTxt) {
-		this.dialogHeadTxt = dialogHeadTxt;
-	}
-
 	public String getQueryBuilderAccount() {
 		return queryBuilderAccount;
 	}
-
 	public void setQueryBuilderAccount(String queryBuilderAccount) {
 		this.queryBuilderAccount = queryBuilderAccount;
+	}
+	public boolean getIsModify() {
+		return isModify;
+	}
+	public void setIsModify(boolean isModify) {
+		this.isModify = isModify;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public String getUsable() {
+		return usable;
+	}
+	public void setUsable(String usable) {
+		this.usable = usable;
 	}
 }

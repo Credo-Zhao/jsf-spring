@@ -1,6 +1,5 @@
 package org.credo.base.entity;
 
-
 import java.util.Date;
 
 import javax.persistence.Column;

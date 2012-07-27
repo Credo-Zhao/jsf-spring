@@ -30,8 +30,4 @@ public class LoginService extends BaseService implements Serializable{
 		return list;
 	}
 	
-	public void updateUserinfo(Userinfo u){
-		this.em.merge(u);
-	}
-	
 }
