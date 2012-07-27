@@ -12,7 +12,7 @@
 		
 		<p:panel styleClass="panel1">
 			<h:form prependId="false" id="userinfoFormId">
-				<p:growl id="growl" showDetail="false" life="3000" />
+				<p:growl id="growl"  life="50000" />
 				<div>
 					<p:breadCrumb>
 						<p:menuitem value="首页" url="/faces/index.xhtml" />
@@ -31,7 +31,7 @@
 
 					<div align="right" style="margin-top: 5px; margin-bottom: 5px;">
 						<p:commandButton value="查询" icon="ui-icon ui-icon-search" style="margin-right:5px" actionListener="#{userinfoBean.queryUserInfo()}" update=":userinfoFormId:tableId"/>
-						<p:commandButton value="重置" icon="ui-icon ui-icon-cancel" style="margin-right:13px" />
+						<p:commandButton value="重置" icon="ui-icon ui-icon-cancel" style="margin-right:13px" type="reset"/>
 					</div>
 				</div>
 			
@@ -45,7 +45,7 @@
 					<f:facet name="header">
 						用户信息列表
 						<div style="text-align: right; position: relative; margin: -13px 0px 0px 0px; vertical-align: middle">
-							<p:commandButton value="添加" icon="ui-icon ui-icon-plus"  actionListener="#{userinfoBean.reset(true)}" update=":userdataDlgId"  oncomplete="userdataDlgVar.show()"  />
+							<p:commandButton value="添加" icon="ui-icon ui-icon-plus"  actionListener="#{userinfoBean.resetDlg()}" update=":userdataDlgId"  oncomplete="dialogHeaderValueChange();userdataDlgVar.show()"  />
 						</div>
 					</f:facet>
 					<p:column >
@@ -96,6 +96,18 @@
 						</f:facet>
 						<h:outputText value="#{ss.createTime}" />
 					</p:column>
+					<p:column >
+						<f:facet name="header">
+							<h:outputText value="更新人" />
+						</f:facet>
+						<h:outputText value="#{ss.updateBy}" />
+					</p:column>
+					<p:column style="text-align: center;width:75px;">
+						<f:facet name="header">
+							<h:outputText value="更新时间" />
+						</f:facet>
+						<h:outputText value="#{ss.updateTime}" />
+					</p:column>
 					<p:column style="text-align: center;width:18px;">
 						<f:facet name="header">
 							<h:outputText value="有效" />
@@ -107,32 +119,31 @@
 						<f:facet name="header">
 							<h:outputText value="操作" />
 						</f:facet>
-						<p:commandButton 
-							icon="ui-icon ui-icon-pencil" title="编辑" 
+						<p:commandButton  oncomplete="dialogHeaderValueChangeTwo();userdataDlgVar.show();"  
+							icon="ui-icon ui-icon-pencil" title="编辑" update=":userdataDlgId"  
 							 style="width:18px;height:18px;">
-							
+							<f:setPropertyActionListener target="#{userinfoBean.userinfo}" value="#{ss}" />
+							<f:setPropertyActionListener target="#{userinfoBean.isModify}" value="true" />
+							<f:setPropertyActionListener target="#{userinfoBean.sex}" value="#{ss.sex}" />
+							<f:setPropertyActionListener target="#{userinfoBean.usable}" value="#{ss.usable}" />
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
-				
-				
 			</h:form>
-			<ui:include src="operate.xhtml"></ui:include>
+			
 		</p:panel>
 		<script type="text/javascript">
-			function handleSaveRequest(xhr, status, args) {
-				if (args.addInfo == "yes") {
-					thxAddDlgVar.hide();
-				}
-			}
-
-			function handleUpdateRequest(xhr, status, args) {
-				if (args.modifyInfo == "yes") {
-					thxUpDlgVar.hide();
-				}
+			function dialogHeaderValueChange(){
+				userdataDlgVar.titlebar.children('span.ui-dialog-title').html('添加新用户'); 
+			}	
+			function dialogHeaderValueChangeTwo(){
+				userdataDlgVar.titlebar.children('span.ui-dialog-title').html('编辑用户信息'); 
 			}
 		</script>
 		
+	</ui:define>
+	<ui:define name="dialog">
+		<ui:include src="operate.xhtml"></ui:include>
 	</ui:define>
 </ui:composition>
 

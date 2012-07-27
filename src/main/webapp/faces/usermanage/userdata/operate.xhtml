@@ -4,7 +4,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:c="http://java.sun.com/jstl/core">
-	<p:dialog header="#{userinfoBean.dialogHeadTxt}" widgetVar="userdataDlgVar" showEffect="fade" 
+	<p:dialog header="修改用户信息" widgetVar="userdataDlgVar" showEffect="fade" 
 		hideEffect="fade" modal="true" resizable="false" id="userdataDlgId">
 		<h:form id="userdataFormId" prependId="false">
 			<p:messages id="userdataMsgId" showDetail="true" />
@@ -13,7 +13,7 @@
 				columnClasses="column1,column2,column1,column2">
 				
 				<h:outputText value="用户帐号：" />
-				<p:inputText value="#{userinfoBean.userinfo.account}"/>
+				<p:inputText value="#{userinfoBean.userinfo.account}" disabled="#{userinfoBean.isModify}"/>
 				
 				<h:outputText value="用户密码：" />
 				<p:inputText value="#{userinfoBean.userinfo.password}"/>
@@ -22,42 +22,47 @@
 				<p:inputText value="#{userinfoBean.userinfo.realname}"/>
 				
 				<h:outputText value="用户年龄：" />
-				<p:inputText value="#{userinfoBean.userinfo.realname}"/>
+				<p:inputText value="#{userinfoBean.userinfo.age}"/>
 				
 				<h:outputText value="电子邮箱：" />
 				<p:inputText value="#{userinfoBean.userinfo.email}"/>
 				
 				<h:outputText value="用户地址：" />
 				<p:inputText value="#{userinfoBean.userinfo.address}" />
+				
+				<h:outputText value="用户性别：" />
+				<p:selectOneRadio value="#{userinfoBean.sex}">
+					<f:selectItem itemLabel="男" itemValue="男" />
+					<f:selectItem itemLabel="女" itemValue="女" />
+				</p:selectOneRadio>
 
-				<h:outputText value="是否可用： " />
-				<p:selectOneRadio value="#{userinfoBean.userinfo.usable==null?'Y':userinfoBean.userinfo.usable}">
+				<h:outputText value="是否有效：" />
+				<p:selectOneRadio value="#{userinfoBean.usable}">
 					<f:selectItem itemLabel="可用" itemValue="Y" />
 					<f:selectItem itemLabel="禁用" itemValue="N" />
 				</p:selectOneRadio>
 
-				<h:outputText value="用户性别： " />
-				<p:selectOneRadio value="#{userinfoBean.userinfo.sex==null?'男':userinfoBean.userinfo.sex}">
-					<f:selectItem itemLabel="男" itemValue="男" />
-					<f:selectItem itemLabel="女" itemValue="女" />
-				</p:selectOneRadio>
-				</h:panelGrid>
+			</h:panelGrid>
 				
 			<p:spacer width="10px" height="10px"></p:spacer>
 
 			<div align="center">
-				<p:commandButton value="提交"  icon="ui-icon ui-icon-check"  style="margin-right:5px"  
-					actionListener="#{loginBean.modifyAboutMe()}"   
-					oncomplete="aboutMeSaveRequest(xhr, status, args);"  
-					update=":userdataFormId:userdataMsgId,:userdataFormId"  />
+				<p:commandButton value="修改"  icon="ui-icon ui-icon-check"  style="margin-right:5px"  rendered="#{userinfoBean.isModify}" 
+					actionListener="#{userinfoBean.sumbitDlgData()}"   
+					oncomplete="aboutMeRequest(xhr, status, args);"  
+					update=":userinfoFormId,:userdataFormId"  />
+				<p:commandButton value="添加"  icon="ui-icon ui-icon-check"  style="margin-right:5px"  rendered="#{!userinfoBean.isModify}"  
+					actionListener="#{userinfoBean.sumbitDlgData()}"   
+					oncomplete="aboutMeRequest(xhr, status, args);"  
+					update=":userinfoFormId,:userdataFormId"  />
 				<p:commandButton type="button" value="取消"  onclick="userdataDlgVar.hide()"  icon="ui-icon ui-icon-cancel" />
 			</div>
 
 		</h:form>
 		<script type="text/javascript">
-			function aboutMeSaveRequest(xhr, status, args) {
-				if (args.aboutMeAddInfo == "yes") {
-					modifyAboutMeDlgVar.hide();
+			function aboutMeRequest(xhr, status, args) {
+				if (args.aboutMeAddInfo == "Y") {
+					userdataDlgVar.hide();
 				}
 			}
 		</script>
