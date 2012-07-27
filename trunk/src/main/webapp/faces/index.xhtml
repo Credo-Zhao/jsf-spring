@@ -9,20 +9,20 @@
 	<ui:define name="styleAndScript">
 	</ui:define>
 	<ui:define name="content">
+		<h:form prependId="false" id="indexFormId">
+			<p:spacer width="20" height="20" />
+			<p:spacer width="20" height="20" />
+			<p:spacer width="20" height="20" />
+			<p:notificationBar position="bottom" effect="slide" widgetVar="bar"
+				style="opacity: 0.8;padding: 60px 0 0 50px;">
+				<h:outputText value="Welcome To Credo's Framework!"
+					style="color:#FFCC00;font-size:56px;" />
+			</p:notificationBar>
 
-		
-			
-			<h:form prependId="false" id="indexFormId">
-			<p:spacer width="20" height="20" />
-			<p:spacer width="20" height="20" />
-			<p:spacer width="20" height="20" />
-				<p:notificationBar position="bottom" effect="slide" widgetVar="bar" style="opacity: 0.8;padding: 60px 0 0 50px;">  
-   				 <h:outputText value="Welcome To Credo's Framework!" style="color:#FFCC00;font-size:56px;" />  
-				</p:notificationBar>  
-  
-				<p:commandButton value="#{loginBean.loginAccount}--say:show!" onclick="bar.show()" type="button" />  
-				<p:commandButton value="Hide" onclick="bar.hide()" type="button" />  
-			</h:form>
+			<p:commandButton value="#{loginBean.loginAccount}--say:show!"
+				onclick="bar.show()" type="button" />
+			<p:commandButton value="Hide" onclick="bar.hide()" type="button" />
+		</h:form>
 
 	</ui:define>
 </ui:composition>

@@ -7,7 +7,7 @@
 	
 	<f:view contentType="text/html">
 	<h:head>
-		<title>Easy ERP</title>
+		<title>LionCredo</title>
         <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
         <style>
         	body {
@@ -108,15 +108,15 @@
 				</f:facet>
 				
 				<h:outputLabel value="用户名："  />
-				<p:inputText value="#{loginBean.loginAccount}"/>
+				<h:inputText value="#{loginBean.loginAccount}"/>
 				
 				<h:outputLabel value="密　码："  />
-				<p:password value="#{loginBean.loginPassword}" />  
+				<h:inputSecret value="#{loginBean.loginPassword}" />  
 				
 				<f:facet name="footer">
 				<div align="right">
 					<h:commandButton value="登录"  style="margin-right:5px" action="#{loginBean.loginProcess()}"/>
-					<h:commandButton value="重置"  type="reset" update="loginForm" style="margin-right:17px"/>
+					<h:commandButton value="重置"  type="reset" update="loginForm" style="margin-right:1px"/>
 				</div>
 				</f:facet>
 			</h:panelGrid>
