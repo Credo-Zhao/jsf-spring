@@ -12,6 +12,7 @@ import org.credo.base.entity.BaseEntity;
  * @author <a href="zhaoqianjava@foxmail.com">LionCredo</a>
  */
 @Entity
+@Table(name = "userinfo")
 public class Userinfo extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = -5905019027934511246L;
 	@Column(name = "account", length = 30,nullable=false)
