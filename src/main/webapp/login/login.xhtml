@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<f:view contentType="text/html">
+	<h:head>
+		<title>LionCredo</title>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+        <style>
+        	body {
+        		margin: 0 0 0 0;
+        		color: #333333;
+        		font: 62.5%/1 Verdana,sans-serif;
+        	}
+        	h1 {
+        		padding: 0 0 0 25px;
+        		font: 400 2.8em/2.5em Georgia,"Times New Roman",serif;
+        		color: #FFFFFF;
+        		background: none repeat scroll 0 0 #00012A;
+        		margin: 0;
+        	}
+        	#navigator {
+        		background: none repeat scroll 0 0 #123456;
+        		border-top: 1px solid #CCCCCC;
+        		clear: both;
+        		color: #999999;
+        		margin: 0 0 1em;
+        		padding-top: 5px;
+        		position: relative;
+        	}
+        	.btn {
+        		clear: none;
+        		display: inline;
+        		float: none;
+        		letter-spacing: 0;
+        		margin: 5px 5px 0 0;
+        		border-width: 2px;
+        		color: #000000;
+        		font-family: Verdana,sans-serif;
+        		font-size: 1.1em;
+        		min-height: 1.5em;
+        		padding: 3px;
+        	}
+        	.label {
+        		font-size: 13px;
+        		float: left;
+        		line-height: 1.5;
+        		width: 100%;
+        		color: #777777;
+        		cursor: pointer;
+        		border: 0 none;
+        		font-family: inherit;
+        		font-style: inherit;
+        		font-weight: inherit;
+        		margin: 0 0 5px 0;
+        		outline: 0 none;
+        		padding: 0;
+        		vertical-align: baseline;
+        	}
+        	.input {
+        		background: none repeat scroll 0 0 #FFFFDD;
+        		color: #000000;
+        		font-family: Verdana,sans-serif;
+        		font-size: 1.1em;
+        		font-weight: 1.5em;
+        		padding: 3px;
+        		margin: 0 0 5px 0;
+        	}
+        	h2 {
+        		border-bottom: solid #DDDDDD;
+        		color: #333333;
+        		font: 400 17px Georgia,"Times New Roman",Times,serif;
+        		padding: 3px 0;
+        		margin: 0 0 0.5em;
+        		outline: 0 none;
+        		vertical-align: baseline;
+        	}
+        	.table {
+        		margin: 25px 0 0 25px;
+        		background-color: #EEEEEE;
+        		padding: 20px;
+        	}
+        	.footer {
+        		background: none repeat scroll 0 0 transparent;
+        		border-top: 1px solid #CCCCCC;
+        		color: #999999;
+        		margin: 25px 25px 0 25px;
+        		padding: 0 0 1px;
+        	}
+        </style>
+	</h:head>
+	
+	<h:body>
+		<h1>
+		LionCredo's Testing Framework
+		</h1>
+		<div id="navigator">
+		<h3>&nbsp;</h3>
+		</div>
+		<p:messages autoUpdate="true" showSummary="true" showDetail="true"/>
+		<h:form prependId="false" id="loginForm">
+			<h:panelGrid columns="2" styleClass="table">
+				<f:facet name="header">
+					<h2>请输入您的用户名和密码：</h2>
+				</f:facet>
+				
+				<h:outputLabel value="用户名："  />
+				<h:inputText value="#{loginBean.loginAccount}"/>
+				
+				<h:outputLabel value="密　码："  />
+				<h:inputSecret value="#{loginBean.loginPassword}" />  
+				
+				<f:facet name="footer">
+				<div align="right">
+					<h:commandButton value="登录"  style="margin-right:5px" action="#{loginBean.loginProcess()}"/>
+					<h:commandButton value="重置"  type="reset" update="loginForm" style="margin-right:1px"/>
+				</div>
+				</f:facet>
+			</h:panelGrid>
+		</h:form>
+		
+		<div class="footer">
+		<p>Copyright © 2005 - 2010 Credo, Inc. All rights reserved.</p>
+		<p>Powered by <a href="">Credo's service.</a></p>
+		</div>
+	</h:body>
+	</f:view>
+</html>
