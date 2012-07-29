@@ -6,17 +6,20 @@
 	xmlns:c="http://java.sun.com/jstl/core">
 	<p:dialog header="修改用户信息" widgetVar="userdataDlgVar" showEffect="fade" 
 		hideEffect="fade" modal="true" resizable="false" id="userdataDlgId">
+		<p:ajax event="close"  oncomplete="myrefresh();"></p:ajax>
 		<h:form id="userdataFormId" prependId="false">
-			<p:messages id="userdataMsgId" showDetail="true" />
-			<p:growl id="userdataGrowlId" life="5000"/>
+			<p:messages id="userdataMsgId"  />
+			<p:growl id="userdataGrowlId" life="1000" />
 			<h:panelGrid columns="4"
 				columnClasses="column1,column2,column1,column2">
 				
 				<h:outputText value="用户帐号：" />
-				<p:inputText value="#{userinfoBean.userinfo.account}" disabled="#{userinfoBean.isModify}"/>
+				<p:inputText id="in" value="#{userinfoBean.userinfo.account}" disabled="#{userinfoBean.isModify}" required="true" requiredMessage="用户帐号：不允许为空!">
+				</p:inputText>
 				
 				<h:outputText value="用户密码：" />
-				<p:inputText value="#{userinfoBean.userinfo.password}"/>
+				<p:inputText value="#{userinfoBean.userinfo.password}"  required="true" requiredMessage="用户密码：不允许为空!">
+				</p:inputText>
 				
 				<h:outputText value="真实姓名：" />
 				<p:inputText value="#{userinfoBean.userinfo.realname}"/>
@@ -37,7 +40,7 @@
 				</p:selectOneRadio>
 
 				<h:outputText value="是否有效：" />
-				<p:selectOneRadio value="#{userinfoBean.usable}">
+				<p:selectOneRadio value="#{userinfoBean.usable}"  required="true" requiredMessage="是否有效：不允许为空!">
 					<f:selectItem itemLabel="可用" itemValue="Y" />
 					<f:selectItem itemLabel="禁用" itemValue="N" />
 				</p:selectOneRadio>
@@ -65,6 +68,7 @@
 					userdataDlgVar.hide();
 				}
 			}
+			
 		</script>
 	</p:dialog>
 </ui:composition>

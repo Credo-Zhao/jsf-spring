@@ -12,7 +12,7 @@
 		
 		<p:panel styleClass="panel1">
 			<h:form prependId="false" id="userinfoFormId">
-				<p:growl id="growl"  life="50000" />
+				<p:growl id="growl"  life="1000" />
 				<div>
 					<p:breadCrumb>
 						<p:menuitem value="首页" url="/faces/index.xhtml" />
@@ -45,7 +45,7 @@
 					<f:facet name="header">
 						用户信息列表
 						<div style="text-align: right; position: relative; margin: -13px 0px 0px 0px; vertical-align: middle">
-							<p:commandButton value="添加" icon="ui-icon ui-icon-plus"  actionListener="#{userinfoBean.resetDlg()}" update=":userdataDlgId"  oncomplete="dialogHeaderValueChange();userdataDlgVar.show()"  />
+							<p:commandButton value="添加" icon="ui-icon ui-icon-plus"  actionListener="#{userinfoBean.resetDlg()}" update=":userdataDlgId"  oncomplete="dialogHeaderValueChange();userdataDlgVar.show();removeRedBox();"   />
 						</div>
 					</f:facet>
 					<p:column >
@@ -90,7 +90,7 @@
 						</f:facet>
 						<h:outputText value="#{ss.createBy}" />
 					</p:column>
-					<p:column style="text-align: center;width:75px;">
+					<p:column style="text-align: center;">
 						<f:facet name="header">
 							<h:outputText value="创建时间" />
 						</f:facet>
@@ -102,7 +102,7 @@
 						</f:facet>
 						<h:outputText value="#{ss.updateBy}" />
 					</p:column>
-					<p:column style="text-align: center;width:75px;">
+					<p:column style="text-align: center;">
 						<f:facet name="header">
 							<h:outputText value="更新时间" />
 						</f:facet>
@@ -119,7 +119,7 @@
 						<f:facet name="header">
 							<h:outputText value="操作" />
 						</f:facet>
-						<p:commandButton  oncomplete="dialogHeaderValueChangeTwo();userdataDlgVar.show();"  
+						<p:commandButton  oncomplete="dialogHeaderValueChangeTwo();userdataDlgVar.show();removeRedBox();"  
 							icon="ui-icon ui-icon-pencil" title="编辑" update=":userdataDlgId"  
 							 style="width:18px;height:18px;">
 							<f:setPropertyActionListener target="#{userinfoBean.userinfo}" value="#{ss}" />
@@ -138,6 +138,23 @@
 			}	
 			function dialogHeaderValueChangeTwo(){
 				userdataDlgVar.titlebar.children('span.ui-dialog-title').html('编辑用户信息'); 
+			}
+			function removeRedBox(){
+				/*$("#in").removeClass("ui-state-error");
+				$("div:last").prevAll().removeClass("ui-state-error");
+				$("div").children().removeClass("ui-state-error"); */
+			    $(".ui-state-error").removeClass("ui-state-error");
+			}
+			/* $(":dialog").each(function() {
+				$(".ui-state-error").removeClass("ui-state-error");
+			 }); */
+			function myrefresh()
+			{
+				/* alert("1:"+document.getElementsByClassName("ui-messages-error-summary")); */
+				if(document.getElementsByClassName("ui-messages-error-summary").length!=0){
+					alert("havae error CSS!");
+			    	window.location.reload();
+				} 
 			}
 		</script>
 		
