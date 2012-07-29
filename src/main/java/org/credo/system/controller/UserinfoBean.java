@@ -3,6 +3,7 @@ package org.credo.system.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -58,15 +59,28 @@ public class UserinfoBean implements Serializable{
 			return;
 		}
 		queryUserInfo();
+		//更新session中user信息,在用户修改自己资料的情况下.
+		Map<String, Object> map =FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		Userinfo userinfoSession=(Userinfo) map.get("userinfo");
+		if(userinfo.getId()==userinfoSession.getId()){
+			map.put("userinfo", userinfo);
+		}
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("成功!", ""));
 		RequestContext.getCurrentInstance().addCallbackParam("aboutMeAddInfo", "Y");
 	}
 	
 	public void resetDlg(){
+		this.userinfo=null;
 		this.userinfo=new Userinfo();
 		this.isModify=false;
 		this.sex=null;
 		this.usable="";
+		
+	}
+	
+	public String aatest(){
+		System.out.println("重定向!");
+		return "faces/usermanage/userdata/index.xhtml";
 	}
 	
 	public List<Userinfo> getList() {

@@ -97,6 +97,8 @@ public class LoginBean implements Serializable{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"数据库错误:","数据库更新数据失败!请联系管理员!"));
 			return;
 		}
+		Map<String, Object> map =FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		map.put("userinfo", userinfo);
 		RequestContext.getCurrentInstance().addCallbackParam("aboutMeAddInfo", "yes");
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("成功","更新用户资料成功，请查询并确认！"));
 	}
