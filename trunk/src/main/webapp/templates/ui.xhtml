@@ -47,13 +47,13 @@
 				<h:outputLabel value=" -- " />
 				<p:commandLink value="　短消息　" /> 
 				<h:outputLabel value=" -- " />
-				<p:commandLink value="　返回首页　" /> 
+				<p:commandLink value="　返回首页　" onclick=""/> 
 				<h:outputLabel value=" -- " />
 				<p:commandLink value="　注销　" onclick="confirmation.show()" /> 
-				<a href="/base/faces/login.xhtml" >　注销　</a>
 				
+				<div id="sss"></div>
 				<p:confirmDialog message="您确定要注销吗?" header="确认注销" severity="alert" widgetVar="confirmation">
-					<p:commandButton value="确定"  oncomplete="confirmation.hide()" />
+					<p:commandButton value="确定"  oncomplete="confirmation.hide()" actionListener="#{loginBean.logoutSystem()}"/>
 					<p:commandButton value="取消"  onclick="confirmation.hide()" type="button" />
 				</p:confirmDialog>
 				
@@ -173,29 +173,13 @@
 				&nbsp;&nbsp;&nbsp;
 			</div>
 		</div>
-		<p:ajaxStatus id="ajaxSubmit" onsuccess="showTooltip();" >
-			<f:facet name="start">
-				<div class="ajaxStatus">
-				<span>
-					<h:graphicImage value="/templates/img/loading.gif" />
-					<br/>
-					<h:outputLabel value="数据加载中,请稍候..."/>
-					</span>
-				</div>
-			</f:facet>
-			<f:facet name="complete" >
-				<h:outputText value="" />
-			</f:facet>
-		</p:ajaxStatus>
-		<div id="submitDiv" style="display:none;">
-		<div class="ajaxStatus" >
-			<span>
-				<h:graphicImage value="/templates/img/loading.gif" />
-				<br/>
-				<h:outputLabel value="数据加载中,请稍候..."/>
-			</span>
-		</div>
-		</div>
+		<p:ajaxStatus onstart="statusDialog.show();showTooltip();"
+			onsuccess="statusDialog.hide();" />
+
+		<p:dialog modal="true" widgetVar="statusDialog" header="Status"
+			draggable="false" closable="false">
+			<p:graphicImage value="/images/ajaxloadingbar.gif" />
+		</p:dialog>
 		<ui:insert name="dialog"></ui:insert>
 	</h:body>
 	
