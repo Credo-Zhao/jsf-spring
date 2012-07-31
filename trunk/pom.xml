@@ -51,7 +51,13 @@
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>3.2</version>
+			<version>3.3.1</version>
+		</dependency>
+		<!-- omnifacesJSF工具主要用于修补JSF验证BUG -->
+		<dependency>
+			<groupId>org.omnifaces</groupId>
+			<artifactId>omnifaces</artifactId>
+			<version>1.1</version>
 		</dependency>
 		<!-- dataSource -->
 		<dependency>

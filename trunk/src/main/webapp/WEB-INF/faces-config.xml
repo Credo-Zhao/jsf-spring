@@ -9,6 +9,10 @@
 		<variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
 	</application>
 
+	<lifecycle>
+		<phase-listener>org.omnifaces.eventlistener.ResetInputAjaxActionListener</phase-listener>
+	</lifecycle>
+
 	<navigation-rule>
 		<from-view-id>/login/login.xhtml</from-view-id>
 		<navigation-case>
