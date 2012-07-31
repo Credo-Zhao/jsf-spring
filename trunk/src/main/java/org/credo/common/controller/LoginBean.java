@@ -1,12 +1,16 @@
 package org.credo.common.controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.credo.common.service.LoginService;
 import org.credo.model.Userinfo;
@@ -42,9 +46,6 @@ public class LoginBean implements Serializable{
 	 * @return faces-config所需字符串
 	 */
 	public String loginProcess(){
-		log.info("进入Bean方法!");
-		log.warn(loginAccount);
-		log.warn(loginPassword);
 		List<Userinfo> userinfoList=loginService.loginQueryUserByAccount(loginAccount, loginPassword);
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		if(null==userinfoList||userinfoList.size()<1){
@@ -61,6 +62,20 @@ public class LoginBean implements Serializable{
 		map.put("userinfo", userinfo);
 		this.userinfo=userinfo;
 		return "LoginSuccess";
+	}
+	
+	public void logoutSystem(){
+		/*getSession(boolean create)如果 create 参数为 true，则创建（如有必要）并返回一个与当前请求关联的会话实例。如果 create 参数为 false，则返回与当前请求关联的任何现有会话实例；如果没有这样的会话，则返回 null。*/
+		ExternalContext externalContext=FacesContext.getCurrentInstance().getExternalContext();
+		HttpSession session=(HttpSession) externalContext.getSession(false);
+		if(null!=session){
+			session.invalidate();
+			try {
+				externalContext.redirect("base/faces/login/login.xhtml");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public void resetForm(){
