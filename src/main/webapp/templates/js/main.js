@@ -1,22 +1,22 @@
 
 //菜单栏效果
- jQuery(document).ready(function () {
+ $(document).ready(function () {
 	/*此代码执行后的DOM完全加载*/
 	
 	/*获取系统当前时间*/
-	jQuery('#down_right_timer').timer({ format: "yy\u5e74mm\u6708dd\u65e5 W HH:MM:ss" });
+	$('#down_right_timer').timer({ format: "yy\u5e74mm\u6708dd\u65e5 W HH:MM:ss" });
     
 	/*改变thedefault缓动效果 - 将影响到/ slideDown方法效果基本show：*/
-    jQuery.easing.def = "easeOutBounce";
-	//jQuery.easing.def = "easeOutQuad";
+    $.easing.def = "easeOutBounce";
+	//$.easing.def = "easeOutQuad";
             
 	/*单击事件处理程序绑定到链接：*/       
-	jQuery('li.button a').click(function (e) {
+	$('li.button a').click(function (e) {
 		/*下拉列表中找到对应于当前部分：*/
-        var dropDown = jQuery(this).parent().next();
+        var dropDown = $(this).parent().next();
 		
 		/*关闭所有其他降下来的部分，除了目前的 */
-        jQuery('.dropdown').not(dropDown).slideUp('slow');
+        $('.dropdown').not(dropDown).slideUp('slow');
         dropDown.slideToggle('slow');
 		
 		/*防止违约事件（这将是导航到链接的地址浏览器）*/
@@ -25,53 +25,53 @@
 			
 	/*模拟鼠标点击事件--> 设置选中一级菜单*/
 	//
-    if(jQuery("#menuTwo").val()!=null&&jQuery("#menuTwo").val()!=""&&jQuery("#menuOne").val()!=null&&jQuery("#menuOne").val()!=""){
-	//jQuery("#"+jQuery("#menuOne").val()).trigger("click");
-    var url=jQuery("#requestContextPath").val();
-	jQuery("#"+jQuery("#menuOne").val()).css("background-image","url("+url+"/images/nav-a-1.png)");
-	jQuery("#"+jQuery("#menuOne").val()).css("color","#FFFFFF");
+    if($("#menuTwo").val()!=null&&$("#menuTwo").val()!=""&&$("#menuOne").val()!=null&&$("#menuOne").val()!=""){
+	//$("#"+$("#menuOne").val()).trigger("click");
+    var url=$("#requestContextPath").val();
+	$("#"+$("#menuOne").val()).css("background-image","url("+url+"/images/nav-a-1.png)");
+	$("#"+$("#menuOne").val()).css("color","#FFFFFF");
 	/*-> 设置选中二级菜单样式*/
-	jQuery("#"+jQuery("#menuTwo").val()).css("background-image","url("+url+"/images/nav-a-2.png)");
+	$("#"+$("#menuTwo").val()).css("background-image","url("+url+"/images/nav-a-2.png)");
     }
 	
 	/*页面加载时设置按钮提示框*/
-	jQuery("button").tooltip({
+	$("button").tooltip({
 		left: 5,top:20
 	});
 	/*页面加载时设置按钮提示框*/
-	jQuery(":text").tooltip({
+	$(":text").tooltip({
 		left: 20,top:-10
 	});
 	
-	jQuery("select").tooltip({
+	$("select").tooltip({
 		left: 20,top:-10
 	});
 
 });
  
  /*页面局部刷新时设置按钮提示框*/
-function showTooltip(){
-	jQuery("button").each(function() {
+/*function showTooltip(){
+	$("button").each(function() {
 		if(this.tooltipText==null){
-		//if(this.title!=null && this.title.length>0 && jQuery(this).text()!="ui-button"){
-		jQuery(this).tooltip({
+		//if(this.title!=null && this.title.length>0 && $(this).text()!="ui-button"){
+		$(this).tooltip({
 			left: 5,top:20
 		});}
 	 });
-	jQuery(":text").each(function() {
+	$(":text").each(function() {
 		if(this.tooltipText==null){
-			jQuery(this).tooltip({
+			$(this).tooltip({
 			left: 20,top:-10
 		});}
 	 });
-	jQuery("select").each(function() {
+	$("select").each(function() {
 		if(this.tooltipText==null){
-			jQuery(this).tooltip({
+			$(this).tooltip({
 			left: 20,top:-10
 		});}
 	 });
 
- }
+ }*/
         
 //鼠标停留效果
 function LiStyleOver(obj) {
@@ -114,24 +114,24 @@ function enter_menu_ctrl()
 	}
 	if(getCookie("MENU_SWITCH")==0)
     {
-		jQuery("#menu_id").css("display","block");
-		jQuery("#control_id").css("left","172px");
-		jQuery("#main_id").css("left","180px");
+		$("#menu_id").css("display","block");
+		$("#control_id").css("left","172px");
+		$("#main_id").css("left","180px");
         SetCookie("MENU_SWITCH","1");
-        jQuery("#menu_ctrl_img_left").css("display","block");
-        jQuery("#menu_ctrl_img_right").css("display","none");
+        $("#menu_ctrl_img_left").css("display","block");
+        $("#menu_ctrl_img_right").css("display","none");
 		//document.getElementById("menu_ctrl_img_left").src=arrowpic1;
 		//document.getElementById("menu_ctrl_img_right").src=arrowpic2;
 		document.getElementById("menu_ctrl_tit").title="\u5173\u95ed\u83dc\u5355";
      }
      else
      {
-		jQuery("#menu_id").css("display","none");
-		jQuery("#control_id").css("left","0px");
-		jQuery("#main_id").css("left","8px");
+		$("#menu_id").css("display","none");
+		$("#control_id").css("left","0px");
+		$("#main_id").css("left","8px");
        	SetCookie("MENU_SWITCH","0");
-       	jQuery("#menu_ctrl_img_left").css("display","none");
-        jQuery("#menu_ctrl_img_right").css("display","block");
+       	$("#menu_ctrl_img_left").css("display","none");
+        $("#menu_ctrl_img_right").css("display","block");
        	//document.getElementById("menu_ctrl_img_left").src=arrowpic1;
 		//document.getElementById("menu_ctrl_img_right").src=arrowpic2;
 		document.getElementById("menu_ctrl_tit").title="\u6253\u5f00\u83dc\u5355";
@@ -146,22 +146,22 @@ function ready_menu_ctrl()
 	}
 	if(getCookie("MENU_SWITCH")==1)
     {
-		jQuery("#menu_id").css("display","block");
- 		jQuery("#control_id").css("left","172px");
- 		jQuery("#main_id").css("left","180px");
-         jQuery("#menu_ctrl_img_left").css("display","block");
-         jQuery("#menu_ctrl_img_right").css("display","none");
+		$("#menu_id").css("display","block");
+ 		$("#control_id").css("left","172px");
+ 		$("#main_id").css("left","180px");
+         $("#menu_ctrl_img_left").css("display","block");
+         $("#menu_ctrl_img_right").css("display","none");
  		//document.getElementById("menu_ctrl_img_left").src=arrowpic1;
  		//document.getElementById("menu_ctrl_img_right").src=arrowpic2;
  		document.getElementById("menu_ctrl_tit").title="\u5173\u95ed\u83dc\u5355";
      }
      else
      {
-    	jQuery("#menu_id").css("display","none");
- 		jQuery("#control_id").css("left","0px");
- 		jQuery("#main_id").css("left","8px");
- 		jQuery("#menu_ctrl_img_left").css("display","none");
-        jQuery("#menu_ctrl_img_right").css("display","block");
+    	$("#menu_id").css("display","none");
+ 		$("#control_id").css("left","0px");
+ 		$("#main_id").css("left","8px");
+ 		$("#menu_ctrl_img_left").css("display","none");
+        $("#menu_ctrl_img_right").css("display","block");
         //document.getElementById("menu_ctrl_img_left").src=arrowpic1;
  		//document.getElementById("menu_ctrl_img_right").src=arrowpic2;
  		document.getElementById("menu_ctrl_tit").title="\u6253\u5f00\u83dc\u5355";
@@ -173,17 +173,17 @@ function ready_menu_ctrl()
  * id 消息ID
  */
 function closeMsg(id){
-	jQuery("#"+id).css("z-index","0");
-	jQuery("#"+id).css("position","absolute");
-	//jQuery("#"+id).css("float","right");
-	jQuery("#"+id).css("left","400px");
-	jQuery("#"+id).css("top","-10px");
+	$("#"+id).css("z-index","0");
+	$("#"+id).css("position","absolute");
+	//$("#"+id).css("float","right");
+	$("#"+id).css("left","400px");
+	$("#"+id).css("top","-10px");
 	 setTimeout(function(){
-		 jQuery("#"+id).hide('slow');
-		 jQuery("#"+id).css("display","none");
+		 $("#"+id).hide('slow');
+		 $("#"+id).css("display","none");
 		 }, 3000);
-	//var intervalID = window.setTimeout(jQuery("#"+id).css("display","none"),5000);
-	//var intervalID2 = window.setTimeout(jQuery("#"+id).css("display","block"),5000);
+	//var intervalID = window.setTimeout($("#"+id).css("display","none"),5000);
+	//var intervalID2 = window.setTimeout($("#"+id).css("display","block"),5000);
 }
 
 //写cookies函数
@@ -197,7 +197,7 @@ function SetCookie(name, value)//两个参数，一个是cookie的名子，一�
 }
 function getCookie(name)//取cookies函数        
 {
-    var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|jQuery)"));
+    var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
     if (arr != null) return unescape(arr[2]); return "";
 
 }
@@ -248,6 +248,30 @@ function handleComplete(panel,args){
 * 用法：<h:form id="packingMaterialInputForm" prependId="false" onsubmit="statusComplete();">
 */
 function statusComplete(){
-	 jQuery("#submitDiv").css("display","");
+	 $("#submitDiv").css("display","");
+}
+
+
+$(document).ready(function() {
+	obj.sessionTime();
+});
+var obj = {};
+var num = 10000;
+var t;
+obj.sessionTime = function() {
+	if (--num == 0) {
+		window.location.href = "http://localhost:8080/base/";
+	}
+	$("#sss").html(num);
+
+	t = setTimeout("obj.sessionTime()", 1000);
+};
+/* ajax时重置时间! */
+function showTooltip() {
+	if (this.tooltipText == null) {
+		clearTimeout(t);
+		obj.sessionTime();
+		num = 10000;
+	}
 }
 
