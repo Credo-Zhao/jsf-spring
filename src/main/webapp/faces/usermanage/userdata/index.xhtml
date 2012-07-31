@@ -43,7 +43,7 @@
 					currentPageReportTemplate="#{component.rowCount == 0 ? '0/0' : '{currentPage}/{totalPages}'} "
 					style="margin-top: 5px;" emptyMessage="没有数据" >
 					<f:facet name="header">
-						用户信息列表
+						用户信息列表<div id="sss"></div>
 						<div style="text-align: right; position: relative; margin: -13px 0px 0px 0px; vertical-align: middle">
 							<p:commandButton value="添加" icon="ui-icon ui-icon-plus"  actionListener="#{userinfoBean.resetDlg()}" update=":userdataDlgId"  oncomplete="dialogHeaderValueChange();userdataDlgVar.show();removeRedBox();"   />
 						</div>
@@ -143,7 +143,7 @@
 				/*$("#in").removeClass("ui-state-error");
 				$("div:last").prevAll().removeClass("ui-state-error");
 				$("div").children().removeClass("ui-state-error"); */
-			    $(".ui-state-error").removeClass("ui-state-error");
+			    /* $(".ui-state-error").removeClass("ui-state-error"); */
 			}
 			/* $(":dialog").each(function() {
 				$(".ui-state-error").removeClass("ui-state-error");
@@ -151,11 +151,32 @@
 			function myrefresh()
 			{
 				/* alert("1:"+document.getElementsByClassName("ui-messages-error-summary")); */
-				if(document.getElementsByClassName("ui-messages-error-summary").length!=0){
+				/* if(document.getElementsByClassName("ui-messages-error-summary").length!=0){
 					alert("havae error CSS!");
 			    	window.location.reload();
-				} 
+				}  */
 			}
+			
+			 $(document).ready(function(){
+				 obj.sessionTime();
+			 }
+			 );
+			 var obj = {};
+			 var num = 1800;
+			 var t;
+			 obj.sessionTime = function(){
+					 if(--num == 0)
+						 window.location.href="http://localhost:8080/base/";
+					 $("#sss").html(num);
+				 t = setTimeout("obj.sessionTime()",1000);
+				 }
+			 /*ajax时重置时间!*/
+			 function showTooltip(){
+				 if(this.tooltipText==null){
+					 clearTimeout(t);
+			 			obj.sessionTime();
+			 			num=1800;}
+			  }
 		</script>
 		
 	</ui:define>
