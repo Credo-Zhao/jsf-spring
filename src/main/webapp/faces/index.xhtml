@@ -9,6 +9,7 @@
 	<ui:define name="styleAndScript">
 	</ui:define>
 	<ui:define name="content">
+	<p:panel styleClass="panel1">
 		<h:form prependId="false" id="indexFormId">
 			<p:spacer width="20" height="20" />
 			<p:spacer width="20" height="20" />
@@ -18,12 +19,17 @@
 				<h:outputText value="Welcome To Credo's Framework!"
 					style="color:#FFCC00;font-size:56px;" />
 			</p:notificationBar>
-
+			Spacer in this example separates this text <p:spacer width="100" height="10" /> and <p:spacer width="20" height="20" /> this text.  
+			Spacer in this example separates this text <p:spacer width="100" height="10" /> and <p:spacer width="20" height="20" /> this text.  
+			Spacer in this example separates this text <p:spacer width="100" height="10" /> and <p:spacer width="20" height="20" /> this text.
+			<div>11</div>  
+			<div>11</div> 
+			<div>11</div> 
 			<p:commandButton value="#{loginBean.loginAccount}--say:show!"
 				onclick="bar.show()" type="button" />
 			<p:commandButton value="Hide" onclick="bar.hide()" type="button" />
 		</h:form>
-
+	</p:panel>
 	</ui:define>
 </ui:composition>
 
