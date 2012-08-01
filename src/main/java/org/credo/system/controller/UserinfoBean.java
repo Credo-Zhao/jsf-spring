@@ -47,6 +47,12 @@ public class UserinfoBean implements Serializable{
 		userinfo.setSex(sex);
 		userinfo.setUsable(usable);
 		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
 			if (isModify) {
 				this.userinfoService.update(userinfo);
 			} else {
