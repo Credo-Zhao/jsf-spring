@@ -77,11 +77,11 @@
 					</p:themeSwitcher>
 				</h:form>
 			</div>
-			
 		</div>
-		<div id="globalbottomdiv">
+		
+		<div  id="header" style="margin-top: 0px;height: 39px;padding: 0px 0px;border-width:0px;">
 				<h:form id="menuTemId">
-				<p:megaMenu>
+				<p:megaMenu style="border-radius: 0px 0px 0px 0px;border-width:0px;">
 					<p:submenu label="　用户管理" >
 						<p:column>
 							<p:submenu label="用户信息">
@@ -117,49 +117,13 @@
 							</p:submenu>
 						</p:column>
 					</p:submenu>
-
-					<p:submenu label="　会议室预定" >
-						<p:column>
-							<p:submenu label="预定">
-								<p:menuitem value="会议室预定" url="#" />
-							</p:submenu>
-							<p:submenu label="历史" >
-								<p:menuitem value="会议室预定历史查询" url="#" />
-							</p:submenu>
-						</p:column>
-					</p:submenu>
-					
-					<p:submenu label="　书籍预定" >
-						<p:column>
-							<p:submenu label="预定图书">
-								<p:menuitem value="预定图书" url="#" />
-							</p:submenu>
-							<p:submenu label="总览" >
-								<p:menuitem value="公司书籍总览" url="#" />
-							</p:submenu>
-						</p:column>
-					</p:submenu>
-					
-					<p:submenu label="　活动查询" >
-						<p:column>
-							<p:submenu label="最新活动">
-								<p:menuitem value="最新活动查询" url="#" />
-							</p:submenu>
-							<p:submenu label="历史活动" >
-								<p:menuitem value="历史活动查询" url="#" />
-							</p:submenu>
-						</p:column>
-					</p:submenu>
 				</p:megaMenu>
 			</h:form>
 			</div>
-		<div id="page">
-			<div id="content" >
-				<div>
-					<ui:insert name="content"></ui:insert>
-				</div>
-			</div>
-			<div style="clear: both;"></div>
+		
+		<div id="main_id" class="main" >
+			<ui:insert name="content" >
+			</ui:insert>
 		</div>
 
 		<div  id="footer" class="ui-widget ui-widget-header ui-corner-all bottom">
