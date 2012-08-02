@@ -49,67 +49,67 @@
 							<p:commandButton value="添加" icon="ui-icon ui-icon-plus"  actionListener="#{userinfoBean.resetDlg()}" update=":userdataDlgId"  oncomplete="dialogHeaderValueChange();userdataDlgVar.show();removeRedBox();"   />
 						</div>
 					</f:facet>
-					<p:column >
+					<p:column  sortBy="#{ss.account}">
 						<f:facet name="header">
 							<h:outputText value="帐号" />
 						</f:facet>
 						<h:outputText value="#{ss.account}" />
 					</p:column>
-					<p:column >
+					<p:column  sortBy="#{ss.password}">
 						<f:facet name="header">
 							<h:outputText value="密码" />
 						</f:facet>
 						<h:outputText value="#{ss.password}" />
 					</p:column>
-					<p:column >
+					<p:column  sortBy="#{ss.realname}">
 						<f:facet name="header">
 							<h:outputText value="真实姓名" />
 						</f:facet>
 						<h:outputText value="#{ss.realname}" />
 					</p:column>
-					<p:column style="text-align: center;width:18px;">
+					<p:column style="text-align: center;width:18px;"  sortBy="#{ss.sex}">
 						<f:facet name="header" >
 							<h:outputText value="性别" />
 						</f:facet>
 						<h:outputText value="#{ss.sex}" />
 					</p:column>
-					<p:column >
+					<p:column  sortBy="#{ss.email}">
 						<f:facet name="header">
 							<h:outputText value="Email" />
 						</f:facet>
 						<h:outputText value="#{ss.email}" />
 					</p:column>
-					<p:column >
+					<p:column  sortBy="#{ss.address}">
 						<f:facet name="header">
 							<h:outputText value="地址" />
 						</f:facet>
 						<h:outputText value="#{ss.address}" />
 					</p:column>
-					<p:column >
+					<p:column  sortBy="#{ss.createBy}">
 						<f:facet name="header">
 							<h:outputText value="创建人" />
 						</f:facet>
 						<h:outputText value="#{ss.createBy}" />
-					</p:column>
-					<p:column style="text-align: center;">
+					</p:column  >
+					<p:column style="text-align: center;" sortBy="#{ss.createTime}">
 						<f:facet name="header">
 							<h:outputText value="创建时间" />
 						</f:facet>
 						<h:outputText value="#{ss.createTime}" />
 					</p:column>
-					<p:column >
+					<p:column  sortBy="#{ss.updateBy}">
 						<f:facet name="header">
 							<h:outputText value="更新人" />
 						</f:facet>
 						<h:outputText value="#{ss.updateBy}" />
 					</p:column>
-					<p:column style="text-align: center;">
+					<p:column style="text-align: center;"  sortBy="#{ss.updateTime}">
 						<f:facet name="header">
 							<h:outputText value="更新时间" />
 						</f:facet>
 						<h:outputText value="#{ss.updateTime}" />
 					</p:column>
-					<p:column style="text-align: center;width:18px;">
+					<p:column style="text-align: center;width:18px;"  sortBy="#{ss.usable}">
 						<f:facet name="header">
 							<h:outputText value="有效" />
 						</f:facet>

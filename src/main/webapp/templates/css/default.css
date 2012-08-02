@@ -286,7 +286,7 @@ img.right {
 
 .panel1 {
 	position: absolute;
-	width: 99.6%;
+	width: 99.3%;
 	overflow: auto;
 	/* border-width:0px; */
 }
@@ -350,4 +350,7 @@ img.right {
 	top: 0px;
 	right: 0px;
 	height: 55px;
+}
+.topBtnNoRoundness{
+	border-radius: 0px 0px 0px 0px;
 }
