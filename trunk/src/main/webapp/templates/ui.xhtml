@@ -12,7 +12,7 @@
 			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
 			<title>LionCredo Testing Framework</title>
 		</f:facet>
-		
+
 		<script type="text/javascript"
 			src="#{request.contextPath}/templates/js/jquery.easing.1.3.js" />
 		<script type="text/javascript"
@@ -25,39 +25,47 @@
 			href="#{request.contextPath}/templates/css/syntaxhighlighter/syntaxhighlighter.css" />
 		<script type="text/javascript"
 			src="#{request.contextPath}/templates/js/main.js" />
-		<script type="text/javascript"  
+		<script type="text/javascript"
 			src="#{request.contextPath}/templates/js/calendari18n.js" />
 		<ui:insert name="head"></ui:insert>
 
 		<script type="text/javascript">
-            $(function() {$('.sidebar a').hover(function() {$(this).toggleClass('ui-state-hover');})});
-        </script>
+			$(function() {
+				$('.sidebar a').hover(function() {
+					$(this).toggleClass('ui-state-hover');
+				})
+			});
+		</script>
 	</h:head>
 
 	<h:body styleClass="ui-widget-content">
 
 		<div id="header" class="ui-widget ui-widget-header">
-			<div >
-			<h:form id="mainFormId">
-				<p:spacer width="5px"></p:spacer>
-				<h:outputLabel value="当前用户：" />
-				<h:outputText value="#{loginBean.userinfo.realname eq null?loginBean.userinfo.account:loginBean.userinfo.realname } " />
-				<p:spacer width="9px"></p:spacer>
-				<p:commandLink value="　个人资料修改　" oncomplete="modifyAboutMeDlgVar.show()" actionListener="#{loginBean.resetForm()}" update=":modifyAboutMeFormId" /> 
-				<h:outputLabel value=" -- " />
-				<p:commandLink value="　短消息　" /> 
-				<h:outputLabel value=" -- " />
-				<p:commandLink value="　返回首页　" onclick=""/> 
-				<h:outputLabel value=" -- " />
-				<p:commandLink value="　注销　" onclick="confirmation.show()" /> 
-				
-				<div id="sss"></div>
-				<p:confirmDialog message="您确定要注销吗?" header="确认注销" severity="alert" widgetVar="confirmation">
-					<p:commandButton value="确定"  oncomplete="confirmation.hide()" actionListener="#{loginBean.logoutSystem()}"/>
-					<p:commandButton value="取消"  onclick="confirmation.hide()" type="button" />
-				</p:confirmDialog>
-				
-			</h:form>
+			<div>
+				<h:form id="mainFormId" prependId="false">
+					<p:spacer width="5px"></p:spacer>
+					<p:commandButton id="currentUserBtn" disabled="true"
+						styleClass="topBtnNoRoundness"
+						value="当前用户：#{loginBean.userinfo.realname eq null?loginBean.userinfo.account:loginBean.userinfo.realname } " />
+					<p:commandButton styleClass="topBtnNoRoundness" value="个人资料修改"
+						oncomplete="modifyAboutMeDlgVar.show()"
+						actionListener="#{loginBean.resetForm()}"
+						update=":modifyAboutMeFormId" />
+					<p:commandButton styleClass="topBtnNoRoundness" value="短消息" />
+					<p:commandButton styleClass="topBtnNoRoundness" value="返回首页"
+						oncomplete="" />
+					<p:commandButton styleClass="topBtnNoRoundness" value="注销"
+						onclick="confirmation.show()" />
+
+					<p:confirmDialog message="您确定要注销吗?" header="确认注销" severity="alert"
+						widgetVar="confirmation">
+						<p:commandButton value="确定" oncomplete="confirmation.hide()"
+							actionListener="#{loginBean.logoutSystem()}" />
+						<p:commandButton value="取消" onclick="confirmation.hide()"
+							type="button" />
+					</p:confirmDialog>
+
+				</h:form>
 				<ui:include src="modifyUserinfo.xhtml" />
 			</div>
 			<div id="top_down_right">
@@ -78,58 +86,46 @@
 				</h:form>
 			</div>
 		</div>
-		
-		<div  id="header" style="margin-top: 0px;height: 39px;padding: 0px 0px;border-width:0px;">
-				<h:form id="menuTemId">
-				<p:megaMenu style="border-radius: 0px 0px 0px 0px;border-width:0px;">
-					<p:submenu label="　用户管理" >
-						<p:column>
-							<p:submenu label="用户信息">
-								<p:menuitem value="用户信息管理" url="/faces/usermanage/userdata/index.xhtml" />
-							</p:submenu>
-							<p:submenu label="用户权限">
-								<p:menuitem value="用户权限管理" url="#" />
-							</p:submenu>
-						</p:column>
+
+		<div id="header"
+			style="margin-top: 0px; height: 39px; padding: 0px 0px; border-width: 0px;">
+			<h:form id="menuTemId">
+				<p:menubar style="border-radius: 0px 0px 0px 0px;border-width:0px;">
+					<p:submenu label="　用户管理">
+						<p:menuitem value="用户信息管理"
+							url="/faces/usermanage/userdata/index.xhtml" />
+						<p:menuitem value="用户权限管理" url="#" />
 					</p:submenu>
 
-					<p:submenu label="　基础功能" >
-						<p:column>
-							<p:submenu label="常用链接">
-								<p:menuitem value="常用链接管理" url="#" />
-							</p:submenu>
-							<p:submenu label="常用功能">
-								<p:menuitem value="常用功能管理" url="#" />
-							</p:submenu>
-						</p:column>
+					<p:submenu label="　基础功能">
+						<p:menuitem value="常用链接管理" url="#" />
+						<p:menuitem value="常用功能管理" url="#" />
 					</p:submenu>
 
-					<p:submenu label="　报表查询" >
-						<p:column>
-							<p:submenu label="汇总" >
-								<p:menuitem value="资金汇总查询" url="#" />
-								<p:menuitem value="税额汇总查询" url="#" />
-								<p:menuitem value="货量汇总查询" url="#" />
-							</p:submenu>
-							<p:submenu label="增值税">
-								<p:menuitem value="增值税税率变化查询" url="#" />
-								<p:menuitem value="增值税税额查询" url="#" />
-							</p:submenu>
-						</p:column>
+					<p:submenu label="　报表查询">
+						<p:submenu label="汇总">
+							<p:menuitem value="资金汇总查询" url="#" />
+							<p:menuitem value="税额汇总查询" url="#" />
+							<p:menuitem value="货量汇总查询" url="#" />
+						</p:submenu>
+						<p:submenu label="增值税">
+							<p:menuitem value="增值税税率变化查询" url="#" />
+							<p:menuitem value="增值税税额查询" url="#" />
+						</p:submenu>
 					</p:submenu>
-				</p:megaMenu>
+
+				</p:menubar>
 			</h:form>
-			</div>
-		
-		<div id="main_id" class="main" >
-			<ui:insert name="content" >
+		</div>
+
+		<div id="main_id" class="main">
+			<ui:insert name="content">
 			</ui:insert>
 		</div>
 
-		<div  id="footer" class="ui-widget ui-widget-header ui-corner-all bottom">
-			<div id="down_left">
-				　&copy;2012 LionCredo,版权所有. 
-			</div>
+		<div id="footer"
+			class="ui-widget ui-widget-header ui-corner-all bottom">
+			<div id="down_left">&copy;2012 LionCredo,版权所有.</div>
 
 			<div id="down_right">
 				<div id="down_right_time">现在时刻：</div>
@@ -138,7 +134,7 @@
 			</div>
 		</div>
 		<p:ajaxStatus onstart="statusDialog.show();showTooltip();"
-			onsuccess="statusDialog.hide();" />
+			onsuccess="statusDialog.hide();removeFirstBtnCSS();" />
 
 		<p:dialog modal="true" widgetVar="statusDialog" header="Status"
 			draggable="false" closable="false">
@@ -146,7 +142,7 @@
 		</p:dialog>
 		<ui:insert name="dialog"></ui:insert>
 	</h:body>
-	
+
 
 </f:view>
 </html>

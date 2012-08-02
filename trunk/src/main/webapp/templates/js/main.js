@@ -254,6 +254,7 @@ function statusComplete(){
 
 $(document).ready(function() {
 	obj.sessionTime();
+	removeFirstBtnCSS();
 });
 var obj = {};
 var num = 10000;
@@ -262,8 +263,7 @@ obj.sessionTime = function() {
 	if (--num == 0) {
 		window.location.href = "http://localhost:8080/base/";
 	}
-	$("#sss").html(num);
-
+	/*$("#currentUserBtn").html(num); */
 	t = setTimeout("obj.sessionTime()", 1000);
 };
 /* ajax时重置时间! */
@@ -275,3 +275,6 @@ function showTooltip() {
 	}
 }
 
+function removeFirstBtnCSS() {
+	$("#currentUserBtn").removeClass("ui-state-disabled");
+}
