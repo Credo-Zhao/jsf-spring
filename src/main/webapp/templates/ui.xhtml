@@ -136,9 +136,9 @@
 		<p:ajaxStatus onstart="statusDialog.show();showTooltip();"
 			onsuccess="statusDialog.hide();removeFirstBtnCSS();" />
 
-		<p:dialog modal="true" widgetVar="statusDialog" header="Status"
-			draggable="false" closable="false">
-			<p:graphicImage value="/images/ajaxloadingbar.gif" />
+		<p:dialog  widgetVar="statusDialog" showHeader="false" resizable="false">
+			<p:graphicImage value="/images/ajaxloadingbar.gif"/><br/>
+			<h:outputLabel value="　　　　数据加载中,请稍候......" />
 		</p:dialog>
 		<ui:insert name="dialog"></ui:insert>
 	</h:body>
