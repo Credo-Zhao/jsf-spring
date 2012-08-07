@@ -20,7 +20,7 @@ public class GuestPreferences implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String theme="cupertino"; //defalut
+	private String theme="excite-bike"; //defalut
 
 	public String getTheme() {
 		//获取JSF的FacesContext的当前线程实例,并获取其外部上下文,然后返回一个不可变的 Map，
