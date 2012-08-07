@@ -25,7 +25,7 @@ public class UserinfoBean implements Serializable{
 
 	protected Logger log = LoggerFactory.getLogger(getClass());
 	private static final long serialVersionUID = 1L;
-	@Resource UserinfoService userinfoService;
+	@Resource private UserinfoService userinfoService;
 	
 	private String queryBuilderAccount;
 	private List<Userinfo> list=new ArrayList<Userinfo>();
@@ -36,6 +36,7 @@ public class UserinfoBean implements Serializable{
 	
 	@PostConstruct
 	public void queryUserInfo(){
+		System.out.println("userinfoService=" + userinfoService);
 		try {
 			list=this.userinfoService.queryAll("Userinfo");
 		} catch (Exception e) {
@@ -46,12 +47,7 @@ public class UserinfoBean implements Serializable{
 	public void sumbitDlgData(){
 		userinfo.setSex(sex);
 		userinfo.setUsable(usable);
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		System.out.println("look you what:"+userinfo.getAccount().length());
 		try {
 			if (isModify) {
 				this.userinfoService.update(userinfo);
@@ -64,7 +60,7 @@ public class UserinfoBean implements Serializable{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "数据库错误,请联系管理员!", ""));
 			return;
 		}
-		queryUserInfo();
+		//queryUserInfo();
 		//更新session中user信息,在用户修改自己资料的情况下.
 		Map<String, Object> map =FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		Userinfo userinfoSession=(Userinfo) map.get("userinfo");
