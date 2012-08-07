@@ -257,11 +257,11 @@ $(document).ready(function() {
 	removeFirstBtnCSS();
 });
 var obj = {};
-var num = 10000;
+var num = 1500;
 var t;
 obj.sessionTime = function() {
 	if (--num == 0) {
-		window.location.href = "http://localhost:8080/base/";
+		window.location.href = "/base";
 	}
 	/*$("#currentUserBtn").html(num); */
 	t = setTimeout("obj.sessionTime()", 1000);
@@ -271,7 +271,7 @@ function showTooltip() {
 	if (this.tooltipText == null) {
 		clearTimeout(t);
 		obj.sessionTime();
-		num = 10000;
+		num = 1500;
 	}
 }
 

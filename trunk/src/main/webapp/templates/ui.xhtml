@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	>
 
 <f:view contentType="text/html">
 
@@ -52,17 +53,12 @@
 						actionListener="#{loginBean.resetForm()}"
 						update=":modifyAboutMeFormId" />
 					<p:commandButton styleClass="topBtnNoRoundness" value="短消息" />
-					<p:commandButton styleClass="topBtnNoRoundness" value="返回首页"
-						oncomplete="" />
-					<p:commandButton styleClass="topBtnNoRoundness" value="注销"
-						onclick="confirmation.show()" />
+					<p:commandButton styleClass="topBtnNoRoundness" value="返回首页" oncomplete="window.location.href = '/base/faces/index.xhtml';" />
+					<p:commandButton styleClass="topBtnNoRoundness" value="注销" onclick="confirmation.show()" />
 
-					<p:confirmDialog message="您确定要注销吗?" header="确认注销" severity="alert"
-						widgetVar="confirmation">
-						<p:commandButton value="确定" oncomplete="confirmation.hide()"
-							actionListener="#{loginBean.logoutSystem()}" />
-						<p:commandButton value="取消" onclick="confirmation.hide()"
-							type="button" />
+					<p:confirmDialog message="您确定要注销吗?" header="确认注销" severity="alert" widgetVar="confirmation">
+						<p:commandButton value="确定" oncomplete="confirmation.hide()" actionListener="#{loginBean.logoutSystem()}" />
+						<p:commandButton value="取消" onclick="confirmation.hide()" type="button" />
 					</p:confirmDialog>
 
 				</h:form>
@@ -126,7 +122,6 @@
 		<div id="footer"
 			class="ui-widget ui-widget-header ui-corner-all bottom">
 			<div id="down_left">&copy;2012 LionCredo,版权所有.</div>
-
 			<div id="down_right">
 				<div id="down_right_time">现在时刻：</div>
 				<div id="down_right_timer"></div>
