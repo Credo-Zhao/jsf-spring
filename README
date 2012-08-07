@@ -1,8 +1,17 @@
-MySQL版本:
-插件信息:
+MySQL版本:5.1.x
+JDK版本:JDK1.6.
+Elipse版本:Eclipse3.7(eclipse-jee-indigo-SR1-win32-x86_64)
+插件信息(可参考http://my.oschina.net/zhaoqian/blog/66543):
+1.gef-->svn-->jboss tool-->maven.安装顺序.
+2.TortoiseSVN-1.7.1.22161-x64-svn-1.7.1(windows下需安装)
+3.Maven(M2Eclipse),apache-maven-3.0.3-bin.(windows下需安装)
+4.Tomcat 7 
+5.JBOSS Tool插件(很强大的一个工具!推荐!)
+
 关于本框架的验证：
 1.允许空格的非空验证  系统自带
+3.最大长度验证 系统自带maxlength
 2.不允许空格的非空验证 自定义
-3.最大长度验证 系统自带
-4.最小长度验证 系统自带
+4.最小长度验证 自定义验证
 5.正则表达式验证 自定义,可多个.
+一般情况下,推荐使用上述五种情况各自的验证.一些特殊情况后台bean验证.
