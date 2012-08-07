@@ -11,23 +11,26 @@
 	<ui:define name="content">
 	<p:panel styleClass="panel1">
 		<h:form prependId="false" id="indexFormId">
-			<p:spacer width="20" height="20" />
-			<p:spacer width="20" height="20" />
-			<p:spacer width="20" height="20" />
+			<p:layout style="min-width:400px;min-height:200px;" id="layout">
+    <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
+        Left
+    </p:layoutUnit>
+
+    <p:layoutUnit position="center">
+        Center
+    </p:layoutUnit>
+</p:layout>
+                    	
 			<p:notificationBar position="bottom" effect="slide" widgetVar="bar"
-				style="opacity: 0.8;padding: 60px 0 0 50px;">
-				<h:outputText value="Welcome To Credo's Framework!"
+				style="opacity: 0.8;padding: 50px 0 0 50px;">
+				<h:outputText value="Welcome To Credo's Framework!主页上暂时没什么东西,将就的看吧~~嘿嘿!"
 					style="color:#FFCC00;font-size:56px;" />
 			</p:notificationBar>
-			Spacer in this example separates this text <p:spacer width="100" height="10" /> and <p:spacer width="20" height="20" /> this text.  
-			Spacer in this example separates this text <p:spacer width="100" height="10" /> and <p:spacer width="20" height="20" /> this text.  
-			Spacer in this example separates this text <p:spacer width="100" height="10" /> and <p:spacer width="20" height="20" /> this text.
-			<div>11</div>  
-			<div>11</div> 
-			<div>11</div> 
-			<p:commandButton value="#{loginBean.loginAccount}--say:show!"
+			
+			<p:commandButton value="#{loginBean.loginAccount}欢迎你,点此帮助!"
 				onclick="bar.show()" type="button" />
-			<p:commandButton value="Hide" onclick="bar.hide()" type="button" />
+			<p:commandButton value="关闭帮助" onclick="bar.hide()" type="button" />
+			<p:tagCloud model="#{loginBean.txtHead}" /> 
 		</h:form>
 	</p:panel>
 	</ui:define>
