@@ -8,7 +8,26 @@
 		<!-- jsf communicate spring 使用spring容器管理jsf. -->
 		<variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
 	</application>
-
+	<!-- 资源文件,供系统自身的验证,转换信息使用. -->
+	<application>
+		<message-bundle>messages</message-bundle>
+		<locale-config>
+			<default-locale>en</default-locale>
+			<supported-locale>zh_CN</supported-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>regex</base-name>
+			<var>regex</var>
+		</resource-bundle>
+	</application>
+	
+	<!-- 注册验证器 -->
+	<validator>
+		<validator-id>customValidator</validator-id>
+		<validator-class>org.credo.base.validators.Validators</validator-class>
+	</validator>
+	
+	<!-- 修改JSF生命周期，在ajax验证后再次进入进入生命周期，重置内容！ -->
 	<lifecycle>
 		<phase-listener>org.omnifaces.eventlistener.ResetInputAjaxActionListener</phase-listener>
 	</lifecycle>
