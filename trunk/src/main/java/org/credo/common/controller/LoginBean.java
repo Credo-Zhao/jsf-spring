@@ -15,6 +15,9 @@ import javax.servlet.http.HttpSession;
 import org.credo.common.service.LoginService;
 import org.credo.model.Userinfo;
 import org.primefaces.context.RequestContext;
+import org.primefaces.model.tagcloud.DefaultTagCloudItem;
+import org.primefaces.model.tagcloud.DefaultTagCloudModel;
+import org.primefaces.model.tagcloud.TagCloudModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
@@ -40,6 +43,20 @@ public class LoginBean implements Serializable{
 	private Userinfo userinfo;
 	private String newPwdFirst;
 	private String newPwdSecond;
+	private TagCloudModel txtHead;
+	
+	//构造方法
+	public LoginBean(){
+		txtHead = new DefaultTagCloudModel();  
+		txtHead.addTag(new DefaultTagCloudItem("Primefaces", "#", 5));  
+		txtHead.addTag(new DefaultTagCloudItem("JPA", "#", 3));  
+		txtHead.addTag(new DefaultTagCloudItem("AJAX", "#", 2));  
+		txtHead.addTag(new DefaultTagCloudItem("jQuery", "#", 5));  
+		txtHead.addTag(new DefaultTagCloudItem("Spring", "#", 4));  
+		txtHead.addTag(new DefaultTagCloudItem("JSF", "#", 2));  
+		txtHead.addTag(new DefaultTagCloudItem("Hibernate", "#", 5));  
+		txtHead.addTag(new DefaultTagCloudItem("MySQL", "#", 1));  
+	}
 	
 	/**
 	 * 登录处理
@@ -158,5 +175,13 @@ public class LoginBean implements Serializable{
 
 	public void setNewPwdSecond(String newPwdSecond) {
 		this.newPwdSecond = newPwdSecond;
+	}
+
+	public TagCloudModel getTxtHead() {
+		return txtHead;
+	}
+
+	public void setTxtHead(TagCloudModel txtHead) {
+		this.txtHead = txtHead;
 	}
 }
