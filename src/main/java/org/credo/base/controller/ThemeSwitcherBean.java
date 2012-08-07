@@ -43,7 +43,7 @@ public class ThemeSwitcherBean implements Serializable{
 		if(null!=gp){
 			theme=gp.getTheme();
 		}else{
-			theme="cupertino";
+			theme="excite-bike";
 		}
 		advancedThemes = new ArrayList<ThemeVO>();
         advancedThemes.add(new ThemeVO("afterdark", "afterdark.png")); //黑色+深绿
