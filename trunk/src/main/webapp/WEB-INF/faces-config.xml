@@ -19,6 +19,10 @@
 			<base-name>regex</base-name>
 			<var>regex</var>
 		</resource-bundle>
+		<resource-bundle>
+			<base-name>messages</base-name>
+			<var>msg</var>
+		</resource-bundle>
 	</application>
 	
 	<!-- 注册验证器 -->
