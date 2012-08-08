@@ -73,6 +73,12 @@
 						</f:facet>
 						<h:outputText value="#{ss.sex}" />
 					</p:column>
+					<p:column  sortBy="#{ss.phone}">
+						<f:facet name="header">
+							<h:outputText value="Phone" />
+						</f:facet>
+						<h:outputText value="#{ss.phone}" />
+					</p:column>
 					<p:column  sortBy="#{ss.email}">
 						<f:facet name="header">
 							<h:outputText value="Email" />
@@ -95,7 +101,7 @@
 						<f:facet name="header">
 							<h:outputText value="创建时间" />
 						</f:facet>
-						<h:outputText value="#{ss.createTime}" />
+						<h:outputText value="#{commonBean.formatDate(ss.createTime)}" />
 					</p:column>
 					<p:column  sortBy="#{ss.updateBy}">
 						<f:facet name="header">
@@ -107,7 +113,7 @@
 						<f:facet name="header">
 							<h:outputText value="更新时间" />
 						</f:facet>
-						<h:outputText value="#{ss.updateTime}" />
+						<h:outputText value="#{commonBean.formatDate(ss.updateTime)}" />
 					</p:column>
 					<p:column style="text-align: center;width:18px;"  sortBy="#{ss.usable}">
 						<f:facet name="header">

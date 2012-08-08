@@ -41,6 +41,13 @@
 					<f:validateRegex pattern="#{regex.EMAIL}" />
 				</p:inputText>
 				
+				<h:outputText value="联系电话：" />
+				<p:inputText value="#{userinfoBean.userinfo.phone}" maxlength="20" label="联系电话">
+					<f:validator validatorId="customValidator" />
+					<f:attribute name="empty" value="true" />
+					<f:attribute name="regex" value="PHONE" />
+				</p:inputText>
+				
 				<h:outputText value="用户地址：" />
 				<p:inputText value="#{userinfoBean.userinfo.address}" maxlength="30" />
 				
