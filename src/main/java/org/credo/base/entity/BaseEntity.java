@@ -28,14 +28,14 @@ public abstract class BaseEntity extends IdEntity {
     private String createBy;
 	
 	@Column(name = "createTime",nullable=true)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 	
 	@Column(name = "updateBy", length = 30, nullable = true)
     private String updateBy;
 	
     @Column(name = "updateTime",nullable=true)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
     
     public BaseEntity() {
