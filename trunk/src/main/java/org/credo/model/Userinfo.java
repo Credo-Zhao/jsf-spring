@@ -31,7 +31,10 @@ public class Userinfo extends BaseEntity implements Serializable {
 	private String sex;
 	@Column(name = "usable", length = 1,nullable=false)
 	private String usable;
-	
+	@Column(name="phone",length=20,nullable=true)
+	private String phone;
+	@Column(name="theme",length=20,nullable=true)
+	private String theme;
 	
 	public String getAccount() {
 		return account;
@@ -80,6 +83,18 @@ public class Userinfo extends BaseEntity implements Serializable {
 	}
 	public void setUsable(String usable) {
 		this.usable = usable;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getTheme() {
+		return theme;
+	}
+	public void setTheme(String theme) {
+		this.theme = theme;
 	}
 	
 }
