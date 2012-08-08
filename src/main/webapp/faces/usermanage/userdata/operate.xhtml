@@ -20,7 +20,7 @@
 				</p:inputText>
 				
 				<h:outputText value="用户密码：" />
-				<p:inputText value="#{userinfoBean.userinfo.password}"  required="true" label="用户密码">
+				<p:inputText value="#{userinfoBean.userinfo.password}"   label="用户密码">
 					<f:validator validatorId="customValidator" />
 					<f:attribute name="empty" value="true" />
 					<f:attribute name="min" value="4" />

@@ -8,8 +8,15 @@ import java.util.TreeMap;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.context.FacesContext;
 
 import org.credo.base.controller.vo.ThemeVO;
+import org.credo.base.service.BaseService;
+import org.credo.base.service.ThemeSwitcherService;
+import org.credo.common.controller.LoginBean;
+import org.credo.model.Userinfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -24,17 +31,38 @@ import org.springframework.stereotype.Controller;
 public class ThemeSwitcherBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
-	@Resource
-	private GuestPreferences gp; //only set
+	protected Logger log = LoggerFactory.getLogger(getClass());
+	@Resource private GuestPreferences gp; //only set
+	@Resource private ThemeSwitcherService tss;
 	
 	private Map<String,String> themes; //only get
 	private List<ThemeVO> advancedThemes; //only get
 	private String theme;	//get & set
 	
+	@SuppressWarnings("unchecked")
 	public void saveTheme(){
 		if(null!=gp){
 			gp.setTheme(theme);
+			//this userinfo's theme will update.
+			System.out.println("theme:"+theme);
+			Userinfo userinfo=(Userinfo)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userinfo");
+			System.out.println("userinfo:"+userinfo.getAccount());
+			userinfo.setTheme(theme);
+			try {
+				this.tss.update(userinfo);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void saveTheme(String themeDB){
+		if(null==themeDB || "".equals(themeDB.trim())){
+			log.info("用户表中无用户指定的选择主题信息!使用默认!");
+			return;
+		}
+		if(null!=gp){
+			gp.setTheme(themeDB);
 		}
 	}
 	
@@ -137,5 +165,12 @@ public class ThemeSwitcherBean implements Serializable{
 	public List<ThemeVO> getAdvancedThemes() {
 		return advancedThemes;
 	}
-	
+
+	public ThemeSwitcherService getTss() {
+		return tss;
+	}
+
+	public void setTss(ThemeSwitcherService tss) {
+		this.tss = tss;
+	}
 }

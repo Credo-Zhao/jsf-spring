@@ -9,9 +9,9 @@ import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.credo.base.controller.ThemeSwitcherBean;
 import org.credo.common.service.LoginService;
 import org.credo.model.Userinfo;
 import org.primefaces.context.RequestContext;
@@ -37,6 +37,7 @@ public class LoginBean implements Serializable{
 	private final Logger log = LoggerFactory.getLogger(getClass());
 	
 	@Resource private LoginService loginService;
+	@Resource private ThemeSwitcherBean themeSwitcherBean;
 	
 	private String loginAccount;
 	private String loginPassword;
@@ -78,6 +79,7 @@ public class LoginBean implements Serializable{
 		Map<String, Object> map =facesContext.getExternalContext().getSessionMap();
 		map.put("userinfo", userinfo);
 		this.userinfo=userinfo;
+		themeSwitcherBean.saveTheme(userinfo.getTheme());
 		return "LoginSuccess";
 	}
 	
@@ -183,5 +185,13 @@ public class LoginBean implements Serializable{
 
 	public void setTxtHead(TagCloudModel txtHead) {
 		this.txtHead = txtHead;
+	}
+
+	public ThemeSwitcherBean getThemeSwitcherBean() {
+		return themeSwitcherBean;
+	}
+
+	public void setThemeSwitcherBean(ThemeSwitcherBean themeSwitcherBean) {
+		this.themeSwitcherBean = themeSwitcherBean;
 	}
 }

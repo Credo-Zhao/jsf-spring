@@ -11,9 +11,6 @@ import org.credo.showcase.service.TableService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-//可以使用spring来管理
-//@ManagedBean
-//@ViewScoped
 @Controller
 @Scope("view")
 public class TableBean implements Serializable{
@@ -23,7 +20,6 @@ public class TableBean implements Serializable{
 	@Resource private TableService tableService;
 	
 	private List<Userinfo> list=new ArrayList<Userinfo>();
-	
 	
 	public void queryUserInfo(){
 		list=this.tableService.queryAllUserInfo();

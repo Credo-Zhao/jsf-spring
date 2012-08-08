@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.faces.context.FacesContext;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -19,8 +21,8 @@ import org.springframework.stereotype.Controller;
 public class GuestPreferences implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	
-	private String theme="excite-bike"; //defalut
+	private String theme="excite-bike"; //defalut,get it by DB.
+	protected Logger log = LoggerFactory.getLogger(getClass());
 
 	public String getTheme() {
 		//获取JSF的FacesContext的当前线程实例,并获取其外部上下文,然后返回一个不可变的 Map，
@@ -35,5 +37,4 @@ public class GuestPreferences implements Serializable{
 	public void setTheme(String theme) {
 		this.theme = theme;
 	}
-	
 }
