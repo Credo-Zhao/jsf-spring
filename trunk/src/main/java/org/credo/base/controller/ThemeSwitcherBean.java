@@ -11,9 +11,7 @@ import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
 
 import org.credo.base.controller.vo.ThemeVO;
-import org.credo.base.service.BaseService;
 import org.credo.base.service.ThemeSwitcherService;
-import org.credo.common.controller.LoginBean;
 import org.credo.model.Userinfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,10 +41,7 @@ public class ThemeSwitcherBean implements Serializable{
 	public void saveTheme(){
 		if(null!=gp){
 			gp.setTheme(theme);
-			//this userinfo's theme will update.
-			System.out.println("theme:"+theme);
 			Userinfo userinfo=(Userinfo)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userinfo");
-			System.out.println("userinfo:"+userinfo.getAccount());
 			userinfo.setTheme(theme);
 			try {
 				this.tss.update(userinfo);
