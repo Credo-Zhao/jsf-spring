@@ -36,7 +36,7 @@ public class UserinfoBean extends BaseBean<Userinfo> implements Serializable{
 	@PostConstruct
 	public void queryUserInfo(){
 		try {
-			this.lazyUser=userinfoService.queryLazyModel(true, "Userinfo", null);
+			this.lazyUser=userinfoService.queryLazyModel(true, "Userinfo", null,0);
 		} catch (Exception e) {
 			System.out.println("LazyModel出现错误!");
 			e.printStackTrace();
