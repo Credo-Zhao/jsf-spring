@@ -37,9 +37,9 @@
 				</div>
 			
 				
-				<p:dataTable var="ss" value="#{userinfoBean.list}"   id="tableId" 
-					paginatorPosition="bottom" rowIndexVar="index" paginator="true"
-					rows="10"
+				<p:dataTable var="ss" value="#{userinfoBean.lazyUser}"   id="tableId" 
+					paginatorPosition="bottom" rowIndexVar="index" paginator="true" 
+					rows="5"
 					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}" 
 					currentPageReportTemplate="#{component.rowCount == 0 ? '0/0' : '{currentPage}/{totalPages}'} "
 					style="margin-top: 5px;" emptyMessage="没有数据" >
