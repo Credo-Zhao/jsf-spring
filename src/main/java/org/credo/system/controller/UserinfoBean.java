@@ -10,20 +10,18 @@ import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.credo.base.controller.BaseBean;
 import org.credo.model.Userinfo;
 import org.credo.system.service.UserinfoService;
 import org.primefaces.context.RequestContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.primefaces.model.LazyDataModel;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-@SuppressWarnings({"unchecked"})
 @Controller
 @Scope("view")
-public class UserinfoBean implements Serializable{
-
-	protected Logger log = LoggerFactory.getLogger(getClass());
+public class UserinfoBean extends BaseBean<Userinfo> implements Serializable{
+	// extends BaseBean
 	private static final long serialVersionUID = 1L;
 	@Resource private UserinfoService userinfoService;
 	
@@ -33,16 +31,18 @@ public class UserinfoBean implements Serializable{
 	private boolean isModify=true;
 	private String sex;
 	private String usable;
+	private LazyDataModel<Userinfo> lazyUser;
 	
 	@PostConstruct
 	public void queryUserInfo(){
-		System.out.println("userinfoService=" + userinfoService);
 		try {
-			list=this.userinfoService.queryAll("Userinfo");
+			this.lazyUser=userinfoService.queryLazyModel(true, "Userinfo", null);
 		} catch (Exception e) {
+			System.out.println("LazyModel出现错误!");
 			e.printStackTrace();
 		}
 	}
+	
 	
 	public void sumbitDlgData(){
 		userinfo.setSex(sex);
@@ -80,11 +80,6 @@ public class UserinfoBean implements Serializable{
 		
 	}
 	
-	public String aatest(){
-		System.out.println("重定向!");
-		return "faces/usermanage/userdata/index.xhtml";
-	}
-	
 	public List<Userinfo> getList() {
 		return list;
 	}
@@ -120,5 +115,11 @@ public class UserinfoBean implements Serializable{
 	}
 	public void setUsable(String usable) {
 		this.usable = usable;
+	}
+	public LazyDataModel<Userinfo> getLazyUser() {
+		return lazyUser;
+	}
+	public void setLazyUser(LazyDataModel<Userinfo> lazyUser) {
+		this.lazyUser = lazyUser;
 	}
 }
