@@ -34,7 +34,7 @@ public abstract class BaseService<T extends BaseEntity> {
 	/**
 	 * @function 查询实体所有数据
 	 * @param t
-	 * @return
+	 * @return 返回一个List
 	 * @throws Exception 
 	 */
 	public List queryAll(String tableName) throws Exception {
@@ -52,31 +52,57 @@ public abstract class BaseService<T extends BaseEntity> {
 		return list;
 	}
 	
-	public Object[] queryLazyModelNeedData(String tableName,int firstResult,int maxResults,String queryJpql) throws Exception{
-		log.info(tableName);
-		String jpqlPagination="SELECT COUNT(t)  FROM "+tableName+" t ";
-		String jpqlQueryData="SELECT t FROM "+tableName+" t ";
-		if(null!=queryJpql||"".equals(queryJpql)){
-			jpqlQueryData=queryJpql;
-		}
+	/**
+	 * @param tableName model层实体名.
+	 * @return 返回数据行数,常用语lazyModel分页使用.
+	 * @throws Exception
+	 */
+	public int queryDataRows(String tableName) throws Exception{
+		String jpql="SELECT COUNT(t)  FROM "+tableName+" t ";
 		int pagination=0;
-		List<T> list=new ArrayList<T>();
 		try {
-			log.info("jpqlPagination:"+jpqlPagination);
-			log.info("jpqlQueryData:"+jpqlQueryData);
-			pagination=Integer.valueOf((this.em.createQuery(jpqlPagination).getSingleResult()).toString());
-			list=this.em.createQuery(jpqlQueryData).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-			log.info("pagination:"+pagination);
-			log.info("list:"+list.size());
+			pagination=Integer.valueOf((this.em.createQuery(jpql).getSingleResult()).toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
-		Object[] objArray={pagination,list};
-		return objArray;
+		return pagination;
+	}
+	
+	/**
+	 * @function LazyModel真/假分页,如果是多表关联查询,必须获取到数据的总行数.
+	 * @param tableName 实体名
+	 * @param firstResult 需要的第一条数据的行数
+	 * @param maxResults  需要的数据条数.
+	 * @param queryJpql	 完整的JPQL语句,如果存在优先使用,将不再使用实体名,用于where条件等的追加,这样做是避免SQL注入.
+	 * @return	返回lazyModel所需要的list数据.
+	 * @throws Exception
+	 */
+	public List<T> queryLazyModelNeedData(String tableName,int firstResult,int maxResults,String queryJpql) throws Exception{
+		String jpqlQueryData="SELECT t FROM "+tableName+" t ";
+		if(null!=queryJpql||"".equals(queryJpql)){
+			jpqlQueryData=queryJpql;
+		}
+		List<T> list=new ArrayList<T>();
+		try {
+			list=this.em.createQuery(jpqlQueryData).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+		return list;
 	} 
 	
-	public LazyDataModel<T> queryLazyModel(boolean isReal,final String tableName,final String queryJpql) throws Exception{
+	/**
+	 * @function LazyModel真/假分页,如果无限定条件,只需前两参数.如果加条件,需要前三条件.如果是多表关联查询,必须获取到数据的总行数.并且事先查出.并写出专门的JPQL语句.需要1,3,4条件.
+	 * @param isReal 是否为真分页,如果true将进行SQL分页,否则进行假分页(服务器内存存在所有数据),
+	 * @param tableName	实体名
+	 * @param queryJpql 默认为NULL.不使用.(多条件,多表情况下使用)完整的JPQL语句,如果存在优先使用,将不再使用实体名,用于where条件等的追加,这样做是避免SQL注入.
+	 * @param totalRows 默认为0.不使用.(多表查询情况使用)数据的总行数,如果存在优先使用,将不再去查询tableDataSize=queryDataRows(tableName);而是直接tableDataSize=totalRows;
+	 * @return lazyModel数据.页面显示使用.
+	 * @throws Exception
+	 */
+	public LazyDataModel<T> queryLazyModel(final boolean isReal,final String tableName,final String queryJpql,final int totalRows) throws Exception{
 		LazyDataModel<T> lazyUsed=new LazyDataModel<T>() {
 			private static final long serialVersionUID = 1L;
 			List<T> tableData = null;
@@ -84,9 +110,15 @@ public abstract class BaseService<T extends BaseEntity> {
 			@Override
 			public List<T> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
 				try {
-					Object[] objArray=(Object[])queryLazyModelNeedData(tableName,first, pageSize,queryJpql);
-					tableData=(List<T>) objArray[1];
-					tableDataSize=(Integer) objArray[0];
+					if(isReal){//真分页
+						tableData=queryLazyModelNeedData(tableName, first, pageSize, queryJpql);
+					}else{//假分页
+						tableData=queryAll(tableName);
+					}
+					if(totalRows!=0){
+						tableDataSize=totalRows;
+					}
+					tableDataSize=queryDataRows(tableName);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -102,12 +134,12 @@ public abstract class BaseService<T extends BaseEntity> {
 					return (List<T>) tableData;
 				}
 			}
-			
+			//获取行ID,这里的ID使用的是实体的ID或者VO的ID,所以如果VO显示lazyModel则必须继承IdEntity
 			@Override
 			public Object getRowKey(T object) {
 				return object.getId();
 			}
-			
+			//获取行数据
 			@Override
 			public T getRowData(String rowKey) {
 				for (T b : tableData) {
