@@ -20,7 +20,7 @@
 				</p:inputText>
 				
 				<h:outputText value="用户密码：" />
-				<p:inputText value="#{userinfoBean.userinfo.password}"   label="用户密码">
+				<p:inputText value="#{userinfoBean.userinfo.password}"   label="用户密码" required="true">
 					<f:validator validatorId="customValidator" />
 					<f:attribute name="empty" value="true" />
 					<f:attribute name="min" value="4" />
@@ -42,15 +42,19 @@
 				</p:inputText>
 				
 				<h:outputText value="联系电话：" />
-				<p:inputText value="#{userinfoBean.userinfo.phone}" maxlength="20" label="联系电话">
+				<p:inputText value="#{userinfoBean.userinfo.phone}" maxlength="20" label="联系电话" id="phone">
 					<f:validator validatorId="customValidator" />
 					<f:attribute name="empty" value="true" />
 					<f:attribute name="regex" value="PHONE" />
 				</p:inputText>
-				
+			</h:panelGrid>
+			<h:panelGrid columns="4"
+				columnClasses="column1">	
 				<h:outputText value="用户地址：" />
-				<p:inputText value="#{userinfoBean.userinfo.address}" maxlength="30" />
-				
+				<p:inputText value="#{userinfoBean.userinfo.address}" maxlength="30" id="address"/>
+			</h:panelGrid>
+			<h:panelGrid columns="4"
+				columnClasses="column1,column2,column1,column2">
 				<h:outputText value="用户性别：" />
 				<p:selectOneRadio value="#{userinfoBean.sex}" required="true" label="用户性别">
 					<f:selectItem itemLabel="男" itemValue="男" />
@@ -69,13 +73,13 @@
 			<div align="center">
 				<p:commandButton value="修改"  icon="ui-icon ui-icon-check"  style="margin-right:5px"  rendered="#{userinfoBean.isModify}" 
 					actionListener="#{userinfoBean.sumbitDlgData()}"   
-					oncomplete="aboutMeRequest(xhr, status, args);"  
+					oncomplete="aboutMeRequest(xhr, status, args);getWidth();"  
 					update=":userinfoFormId,:userdataFormId"  />
 				<p:commandButton value="添加"  icon="ui-icon ui-icon-check"  style="margin-right:5px"  rendered="#{!userinfoBean.isModify}"  
 					actionListener="#{userinfoBean.sumbitDlgData()}"   
-					oncomplete="aboutMeRequest(xhr, status, args);"  
+					oncomplete="aboutMeRequest(xhr, status, args);getWidth();"  
 					update=":userinfoFormId,:userdataFormId"  />
-				<p:commandButton type="button" value="取消"  onclick="userdataDlgVar.hide()"  icon="ui-icon ui-icon-cancel" />
+				<p:commandButton type="button" value="取消"  onclick="userdataDlgVar.hide();getWidth();"  icon="ui-icon ui-icon-cancel" />
 			</div>
 
 		</h:form>
@@ -85,7 +89,10 @@
 					userdataDlgVar.hide();
 				}
 			}
-			
+			function getWidth(){
+				var width=$("#phone").width();
+				$("#address").width((width+width+88));
+			}
 		</script>
 	</p:dialog>
 </ui:composition>

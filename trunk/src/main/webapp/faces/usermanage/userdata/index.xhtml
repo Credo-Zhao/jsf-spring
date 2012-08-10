@@ -39,14 +39,14 @@
 				
 				<p:dataTable var="ss" value="#{userinfoBean.lazyUser}"   id="tableId" 
 					paginatorPosition="bottom" rowIndexVar="index" paginator="true" 
-					rows="5"
+					rows="10"
 					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}" 
 					currentPageReportTemplate="#{component.rowCount == 0 ? '0/0' : '{currentPage}/{totalPages}'} "
 					style="margin-top: 5px;" emptyMessage="没有数据" >
 					<f:facet name="header">
 						用户信息列表
 						<div style="text-align: right; position: relative; margin: -15px 2px 0px 0px; vertical-align: middle">
-							<p:commandButton value="添加" icon="ui-icon ui-icon-plus"  actionListener="#{userinfoBean.resetDlg()}" update=":userdataDlgId"  oncomplete="dialogHeaderValueChange();userdataDlgVar.show();removeRedBox();"   />
+							<p:commandButton value="添加" icon="ui-icon ui-icon-plus"  actionListener="#{userinfoBean.resetDlg()}" update=":userdataDlgId"  oncomplete="dialogHeaderValueChange();userdataDlgVar.show();getWidth();"   />
 						</div>
 					</f:facet>
 					<p:column  sortBy="#{ss.account}">
@@ -126,7 +126,7 @@
 						<f:facet name="header">
 							<h:outputText value="操作" />
 						</f:facet>
-						<p:commandButton  oncomplete="dialogHeaderValueChangeTwo();userdataDlgVar.show();removeRedBox();"  
+						<p:commandButton  oncomplete="dialogHeaderValueChangeTwo();userdataDlgVar.show();getWidth();"  
 							icon="ui-icon ui-icon-pencil" title="编辑" update=":userdataDlgId"  
 							 style="width:18px;height:18px;">
 							<f:setPropertyActionListener target="#{userinfoBean.userinfo}" value="#{ss}" />

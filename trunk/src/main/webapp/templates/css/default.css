@@ -50,7 +50,7 @@ img.right {
 /* Header */
 #header {
     padding: 4px 0px;
-    height: 50px;
+    height: 40px;
     position: relative;
 }
 
@@ -104,7 +104,7 @@ img.right {
 #top_down_right{
 	position:absolute;
     top:5px;
-    right:31px;
+    right:17px;
 }
 /* Page */
 #page {
