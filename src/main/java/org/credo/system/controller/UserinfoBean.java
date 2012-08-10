@@ -15,15 +15,18 @@ import org.credo.model.Userinfo;
 import org.credo.system.service.UserinfoService;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 @Controller
 @Scope("view")
 public class UserinfoBean extends BaseBean<Userinfo> implements Serializable{
-	// extends BaseBean
+	
 	private static final long serialVersionUID = 1L;
 	@Resource private UserinfoService userinfoService;
+	private Logger logg = LoggerFactory.getLogger(getClass());
 	
 	private String queryBuilderAccount;
 	private List<Userinfo> list=new ArrayList<Userinfo>();
@@ -36,18 +39,16 @@ public class UserinfoBean extends BaseBean<Userinfo> implements Serializable{
 	@PostConstruct
 	public void queryUserInfo(){
 		try {
+			log.info("基类的log呢?");
 			this.lazyUser=userinfoService.queryLazyModel(true, "Userinfo", null,0);
 		} catch (Exception e) {
-			System.out.println("LazyModel出现错误!");
 			e.printStackTrace();
 		}
 	}
 	
-	
 	public void sumbitDlgData(){
 		userinfo.setSex(sex);
 		userinfo.setUsable(usable);
-		System.out.println("look you what:"+userinfo.getAccount().length());
 		try {
 			if (isModify) {
 				this.userinfoService.update(userinfo);
@@ -77,7 +78,6 @@ public class UserinfoBean extends BaseBean<Userinfo> implements Serializable{
 		this.isModify=false;
 		this.sex=null;
 		this.usable="";
-		
 	}
 	
 	public List<Userinfo> getList() {
