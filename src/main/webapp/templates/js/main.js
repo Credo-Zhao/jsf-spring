@@ -255,6 +255,7 @@ function statusComplete(){
 $(document).ready(function() {
 	obj.sessionTime();
 	removeFirstBtnCSS();
+	addStyleToj_idt20_label();
 });
 var obj = {};
 var num = 1500;
@@ -274,7 +275,12 @@ function showTooltip() {
 		num = 1500;
 	}
 }
-
+/*消除掉选择样式控件的圆滑效果*/
 function removeFirstBtnCSS() {
 	$("#currentUserBtn").removeClass("ui-state-disabled");
+}
+
+function addStyleToj_idt20_label(){
+	$("#j_idt20_label").addClass("topBtnNoRoundness");
+	$("#j_idt20_label").height(19);
 }

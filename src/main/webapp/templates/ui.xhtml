@@ -43,8 +43,13 @@
 
 		<div id="header" class="ui-widget ui-widget-header">
 			<div>
-				<h:form id="mainFormId" prependId="false">
-					<p:spacer width="5px"></p:spacer>
+				<h:form  prependId="false">
+				<h:outputLabel value="　Welcome To Credo's FrameWork" style="font-size: xx-large;"/>
+				</h:form>
+				
+			</div>
+			<div id="top_down_right">
+				<h:form  id="mainFormId" prependId="false">
 					<p:commandButton id="currentUserBtn" disabled="true"
 						styleClass="topBtnNoRoundness"
 						value="当前用户：#{loginBean.userinfo.realname eq null?loginBean.userinfo.account:loginBean.userinfo.realname } " />
@@ -60,14 +65,8 @@
 						<p:commandButton value="确定" oncomplete="confirmation.hide()" actionListener="#{loginBean.logoutSystem()}" />
 						<p:commandButton value="取消" onclick="confirmation.hide()" type="button" />
 					</p:confirmDialog>
-
-				</h:form>
-				<ui:include src="modifyUserinfo.xhtml" />
-			</div>
-			<div id="top_down_right">
-				<h:form>
-					<p:themeSwitcher value="#{themeSwitcherBean.theme}"
-						style="width:175px;" effect="fade" var="t">
+					<p:themeSwitcher value="#{themeSwitcherBean.theme}" styleClass="topBtnNoRoundness" 
+						style="width:175px;top:10px;margin-left: 9px;" effect="fade" var="t">
 						<f:selectItem itemLabel="选择主题" itemValue="" />
 						<f:selectItems value="#{themeSwitcherBean.advancedThemes}"
 							var="theme" itemLabel="#{theme.name}" itemValue="#{theme}" />
@@ -80,6 +79,7 @@
                         </p:column>
 					</p:themeSwitcher>
 				</h:form>
+				<ui:include src="modifyUserinfo.xhtml" />
 			</div>
 		</div>
 
