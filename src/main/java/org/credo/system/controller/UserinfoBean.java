@@ -2,6 +2,7 @@ package org.credo.system.controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,8 +16,6 @@ import org.credo.model.Userinfo;
 import org.credo.system.service.UserinfoService;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -26,9 +25,8 @@ public class UserinfoBean extends BaseBean<Userinfo> implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	@Resource private UserinfoService userinfoService;
-	private Logger logg = LoggerFactory.getLogger(getClass());
 	
-	private String queryBuilderAccount;
+	private Map<String,Object> whereExMap=new HashMap<String, Object>();
 	private List<Userinfo> list=new ArrayList<Userinfo>();
 	private Userinfo userinfo=new Userinfo();
 	private boolean isModify=true;
@@ -39,9 +37,9 @@ public class UserinfoBean extends BaseBean<Userinfo> implements Serializable{
 	@PostConstruct
 	public void queryUserInfo(){
 		try {
-			log.info("基类的log呢?");
-			this.lazyUser=userinfoService.queryLazyModel(true, "Userinfo", null,0);
+			this.lazyUser=userinfoService.queryData(whereExMap);
 		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR, "数据库错误,请联系管理员!", ""));
 			e.printStackTrace();
 		}
 	}
@@ -58,7 +56,7 @@ public class UserinfoBean extends BaseBean<Userinfo> implements Serializable{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "数据库错误,请联系管理员!", ""));
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR, "数据库错误,请联系管理员!", ""));
 			return;
 		}
 		//queryUserInfo();
@@ -92,12 +90,6 @@ public class UserinfoBean extends BaseBean<Userinfo> implements Serializable{
 	public void setUserinfo(Userinfo userinfo) {
 		this.userinfo = userinfo;
 	}
-	public String getQueryBuilderAccount() {
-		return queryBuilderAccount;
-	}
-	public void setQueryBuilderAccount(String queryBuilderAccount) {
-		this.queryBuilderAccount = queryBuilderAccount;
-	}
 	public boolean getIsModify() {
 		return isModify;
 	}
@@ -121,5 +113,13 @@ public class UserinfoBean extends BaseBean<Userinfo> implements Serializable{
 	}
 	public void setLazyUser(LazyDataModel<Userinfo> lazyUser) {
 		this.lazyUser = lazyUser;
+	}
+
+	public Map<String,Object> getWhereExMap() {
+		return whereExMap;
+	}
+
+	public void setWhereExMap(Map<String,Object> whereExMap) {
+		this.whereExMap = whereExMap;
 	}
 }

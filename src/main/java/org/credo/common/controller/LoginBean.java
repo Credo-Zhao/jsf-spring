@@ -18,8 +18,6 @@ import org.primefaces.context.RequestContext;
 import org.primefaces.model.tagcloud.DefaultTagCloudItem;
 import org.primefaces.model.tagcloud.DefaultTagCloudModel;
 import org.primefaces.model.tagcloud.TagCloudModel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -34,7 +32,6 @@ import org.springframework.stereotype.Controller;
 public class LoginBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private final Logger log = LoggerFactory.getLogger(getClass());
 	
 	@Resource private LoginService loginService;
 	@Resource private ThemeSwitcherBean themeSwitcherBean;
