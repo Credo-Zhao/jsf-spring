@@ -32,15 +32,12 @@
 				<p:inputText value="#{loginBean.userinfo.address}" />
 				
 				<h:outputText value="性别： " />
-					<p:selectOneMenu value="#{loginBean.userinfo.sex}">
-						<f:selectItem itemLabel="请选择" itemValue="" />
-						<f:selectItem itemLabel="男" itemValue="男" />
-						<f:selectItem itemLabel="女" itemValue="女" />
-					</p:selectOneMenu>
+					<p:selectOneRadio value="#{loginBean.userinfo.sex}"  label="用户性别">
+					<f:selectItem itemLabel="男" itemValue="男" />
+					<f:selectItem itemLabel="女" itemValue="女" />
+				</p:selectOneRadio>
 				</h:panelGrid>
 				
-			
-
 			<div align="center">
 				<p:commandButton value="提交"  icon="ui-icon ui-icon-check"  style="margin-right:5px"  
 					actionListener="#{loginBean.modifyAboutMe()}"   

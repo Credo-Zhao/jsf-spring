@@ -47,14 +47,7 @@
 					<f:attribute name="empty" value="true" />
 					<f:attribute name="regex" value="PHONE" />
 				</p:inputText>
-			</h:panelGrid>
-			<h:panelGrid columns="4"
-				columnClasses="column1">	
-				<h:outputText value="用户地址：" />
-				<p:inputText value="#{userinfoBean.userinfo.address}" maxlength="30" id="address"/>
-			</h:panelGrid>
-			<h:panelGrid columns="4"
-				columnClasses="column1,column2,column1,column2">
+				
 				<h:outputText value="用户性别：" />
 				<p:selectOneRadio value="#{userinfoBean.sex}" required="true" label="用户性别">
 					<f:selectItem itemLabel="男" itemValue="男" />
@@ -66,7 +59,12 @@
 					<f:selectItem itemLabel="可用" itemValue="Y" />
 					<f:selectItem itemLabel="禁用" itemValue="N" />
 				</p:selectOneRadio> 
-
+			</h:panelGrid>
+			<h:panelGrid columns="4"
+				columnClasses="column1">	
+				<h:outputText value="用户地址：" />
+				<p:inputText value="#{userinfoBean.userinfo.address}" maxlength="30" id="address"/>
+				
 			</h:panelGrid>
 			<p:spacer width="10px" height="10px"></p:spacer> 
 

@@ -54,7 +54,7 @@
 						styleClass="topBtnNoRoundness"
 						value="当前用户：#{loginBean.userinfo.realname eq null?loginBean.userinfo.account:loginBean.userinfo.realname } " />
 					<p:commandButton styleClass="topBtnNoRoundness" value="个人资料修改"
-						oncomplete="modifyAboutMeDlgVar.show()"
+						oncomplete="changeSelectOneMenuWidth();modifyAboutMeDlgVar.show();"
 						actionListener="#{loginBean.resetForm()}"
 						update=":modifyAboutMeFormId" />
 					<p:commandButton styleClass="topBtnNoRoundness" value="短消息" />
@@ -70,7 +70,7 @@
 						<f:selectItem itemLabel="选择主题" itemValue="" />
 						<f:selectItems value="#{themeSwitcherBean.advancedThemes}"
 							var="theme" itemLabel="#{theme.name}" itemValue="#{theme}" />
-						<p:ajax listener="#{themeSwitcherBean.saveTheme}" />
+						<p:ajax listener="#{themeSwitcherBean.saveTheme}" oncomplete="changeSelectOneMenuWidth();"/>
 						<p:column>
 							<p:graphicImage value="/images/themes/#{t.image}" />
 						</p:column>
