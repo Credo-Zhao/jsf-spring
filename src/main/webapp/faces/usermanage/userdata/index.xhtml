@@ -7,11 +7,12 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/ui.xhtml">
 	<ui:define name="styleAndScript">
+		<style>
+			.ui-calendar-inputStyle {width:10px !important;}
+		</style>
 	</ui:define>
 	<ui:define name="content">
-		
 		<p:panel styleClass="panel1" id="panelFirst" >
-			
 			<h:form prependId="false" id="userinfoFormId">
 				<p:growl id="growl"  sticky="true"/>
 				<div style="margin-top: 7px; margin-bottom: 7px;">
@@ -25,9 +26,27 @@
 				<div class="style1" >
 					<h:panelGrid columns="8" id="serachPanelId" style="margin-top: 5px; margin-bottom: 5px;" 
 						columnClasses="column1,column2,column1,column2,column1,column2,column1,column2">
-						<h:outputText value="帐号：" />
-						<p:inputText value="#{userinfoBean.queryBuilderAccount}"/>
+						<h:outputLabel value="帐号:" />
+						<p:inputText value="#{userinfoBean.whereExMap['account']}" />
 						
+						<h:outputLabel value="真实姓名:"/>
+						<p:inputText value="#{userinfoBean.whereExMap['realName']}"  />
+						
+						<h:outputLabel value="性别:"/>
+						<p:selectOneMenu value="#{userinfoBean.whereExMap['sex']}" style="width:130px;">
+							<f:selectItem itemLabel="请选择" itemValue="" />
+							<f:selectItem itemLabel="男" itemValue="男" />
+							<f:selectItem itemLabel="女" itemValue="女" />
+						</p:selectOneMenu>
+						
+						<h:outputLabel value="地址"/>
+						<p:inputText value="#{userinfoBean.whereExMap['address']}"/>
+						
+						<h:outputLabel value="创建时间:"/>
+						<p:calendar value="#{userinfoBean.whereExMap['beginTime']}"  locale="cn" pattern="yyyy-MM-dd" />
+						
+						<h:outputLabel value="到:"/>
+						<p:calendar value="#{userinfoBean.whereExMap['endTime']}" locale="cn" pattern="yyyy-MM-dd" />
 					</h:panelGrid>
 
 					<div align="right" style="margin-top: 5px; margin-bottom: 5px;">
@@ -39,7 +58,7 @@
 				
 				<p:dataTable var="ss" value="#{userinfoBean.lazyUser}"   id="tableId" 
 					paginatorPosition="bottom" rowIndexVar="index" paginator="true" 
-					rows="10"
+					rows="9"
 					paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}" 
 					currentPageReportTemplate="#{component.rowCount == 0 ? '0/0' : '{currentPage}/{totalPages}'} "
 					style="margin-top: 5px;" emptyMessage="没有数据" >
@@ -49,73 +68,73 @@
 							<p:commandButton value="添加" icon="ui-icon ui-icon-plus"  actionListener="#{userinfoBean.resetDlg()}" update=":userdataDlgId"  oncomplete="dialogHeaderValueChange();userdataDlgVar.show();getWidth();"   />
 						</div>
 					</f:facet>
-					<p:column  sortBy="#{ss.account}">
+					<p:column >
 						<f:facet name="header">
 							<h:outputText value="帐号" />
 						</f:facet>
 						<h:outputText value="#{ss.account}" />
 					</p:column>
-					<p:column  sortBy="#{ss.password}">
+					<p:column >
 						<f:facet name="header">
 							<h:outputText value="密码" />
 						</f:facet>
 						<h:outputText value="#{ss.password}" />
 					</p:column>
-					<p:column  sortBy="#{ss.realname}">
+					<p:column >
 						<f:facet name="header">
 							<h:outputText value="真实姓名" />
 						</f:facet>
 						<h:outputText value="#{ss.realname}" />
 					</p:column>
-					<p:column style="text-align: center;width:18px;"  sortBy="#{ss.sex}">
+					<p:column style="text-align: center;width:18px;" >
 						<f:facet name="header" >
 							<h:outputText value="性别" />
 						</f:facet>
 						<h:outputText value="#{ss.sex}" />
 					</p:column>
-					<p:column  sortBy="#{ss.phone}">
+					<p:column  >
 						<f:facet name="header">
 							<h:outputText value="Phone" />
 						</f:facet>
 						<h:outputText value="#{ss.phone}" />
 					</p:column>
-					<p:column  sortBy="#{ss.email}">
+					<p:column >
 						<f:facet name="header">
 							<h:outputText value="Email" />
 						</f:facet>
 						<h:outputText value="#{ss.email}" />
 					</p:column>
-					<p:column  sortBy="#{ss.address}">
+					<p:column >
 						<f:facet name="header">
 							<h:outputText value="地址" />
 						</f:facet>
 						<h:outputText value="#{ss.address}" />
 					</p:column>
-					<p:column  sortBy="#{ss.createBy}">
+					<p:column >
 						<f:facet name="header">
 							<h:outputText value="创建人" />
 						</f:facet>
 						<h:outputText value="#{ss.createBy}" />
 					</p:column  >
-					<p:column style="text-align: center;" sortBy="#{ss.createTime}">
+					<p:column style="text-align: center;" >
 						<f:facet name="header">
 							<h:outputText value="创建时间" />
 						</f:facet>
 						<h:outputText value="#{commonBean.formatDate(ss.createTime)}" />
 					</p:column>
-					<p:column  sortBy="#{ss.updateBy}">
+					<p:column  >
 						<f:facet name="header">
 							<h:outputText value="更新人" />
 						</f:facet>
 						<h:outputText value="#{ss.updateBy}" />
 					</p:column>
-					<p:column style="text-align: center;"  sortBy="#{ss.updateTime}">
+					<p:column style="text-align: center;"  >
 						<f:facet name="header">
 							<h:outputText value="更新时间" />
 						</f:facet>
 						<h:outputText value="#{commonBean.formatDate(ss.updateTime)}" />
 					</p:column>
-					<p:column style="text-align: center;width:18px;"  sortBy="#{ss.usable}">
+					<p:column style="text-align: center;width:18px;"  >
 						<f:facet name="header">
 							<h:outputText value="有效" />
 						</f:facet>
@@ -155,38 +174,6 @@
 			/* $(":dialog").each(function() {
 				$(".ui-state-error").removeClass("ui-state-error");
 			 }); */
-			function myrefresh()
-			{
-				/* alert("1:"+document.getElementsByClassName("ui-messages-error-summary")); */
-				/* if(document.getElementsByClassName("ui-messages-error-summary").length!=0){
-					alert("havae error CSS!");
-			    	window.location.reload();
-				}  */
-			}
-			
-		/* 	 $(document).ready(function(){
-				 obj.sessionTime();
-			 }
-			 );
-			 var obj = {};
-			 var num = 10;
-			 var t;
-			 obj.sessionTime = function(){
-					 if(--num == 0){
-					 window.location.href="http://localhost:8080/base/";
-					 }
-					 $("#sss").html(num);
-					 
-				 t = setTimeout("obj.sessionTime()",1000);
-				 }
-			 /*ajax时重置时间!*/
-			/*  function showTooltip(){
-				 if(this.tooltipText==null){
-					 alert("ajax");
-					 clearTimeout(t);
-			 			obj.sessionTime();
-			 			num=10;}
-			  } */ 
 		</script>
 		
 	</ui:define>

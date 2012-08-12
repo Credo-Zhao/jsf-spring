@@ -256,6 +256,7 @@ $(document).ready(function() {
 	obj.sessionTime();
 	removeFirstBtnCSS();
 	addStyleToj_idt20_label();
+	changeSelectOneMenuWidth();
 });
 var obj = {};
 var num = 1500;
@@ -283,4 +284,9 @@ function removeFirstBtnCSS() {
 function addStyleToj_idt20_label(){
 	$("#j_idt20_label").addClass("topBtnNoRoundness");
 	$("#j_idt20_label").height(19);
+}
+/*设定下拉框的长度为文本框长度*/
+function changeSelectOneMenuWidth(){
+	var widthSelect=$(":text").width();
+	$("select").addClass("ui-inputfield ui-widget ui-state-default ui-corner-all hasDatepicker ui-state-hover");
 }
