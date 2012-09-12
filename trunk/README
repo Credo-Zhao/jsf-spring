@@ -1,8 +1,8 @@
 MySQL版本:5.1.x
-JDK版本:JDK1.6.
-Elipse版本:Eclipse3.7(eclipse-jee-indigo-SR1-win32-x86_64)
+JDK版本:JDK1.6.64位.
+Elipse版本:Eclipse3.7(eclipse-jee-indigo-SR1-win32-x86_64),现在更换为Eclipse4.2.
 插件信息(可参考http://my.oschina.net/zhaoqian/blog/66543):
-1.gef-->svn-->jboss tool-->maven.安装顺序.
+1.svn-->jboss tool-->maven.安装顺序.
 2.TortoiseSVN-1.7.1.22161-x64-svn-1.7.1(windows下需安装)
 3.Maven(M2Eclipse),apache-maven-3.0.3-bin.(windows下需安装)
 4.Tomcat 7 
