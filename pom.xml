@@ -377,12 +377,21 @@
 			<version>1.2.16</version>
 			<scope>compile</scope>
 		</dependency>
+		
         <dependency>
         	<groupId>org.hibernate</groupId>
         	<artifactId>hibernate-annotations</artifactId>
         	<version>3.2.1.ga</version>
         	<type>jar</type>
         	<scope>compile</scope>
+        	<!-- Missing indirectly referenced artifact javax.transaction:jta:jar:1.0.1B:compile -->
+			<!-- org.hibernate so add scope down all -->
+        	<exclusions>
+				<exclusion>
+					<artifactId>jta</artifactId>
+					<groupId>javax.transaction</groupId>
+				</exclusion>
+			</exclusions>
         </dependency>
         <dependency>
         	<groupId>org.hibernate</groupId>
