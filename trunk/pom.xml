@@ -386,13 +386,19 @@
         	<scope>compile</scope>
         	<!-- Missing indirectly referenced artifact javax.transaction:jta:jar:1.0.1B:compile -->
 			<!-- org.hibernate so add scope down all -->
-        	<exclusions>
+        <!-- 	<exclusions>
 				<exclusion>
 					<artifactId>jta</artifactId>
 					<groupId>javax.transaction</groupId>
+					<version></version>
 				</exclusion>
-			</exclusions>
+			</exclusions> -->
         </dependency>
+        <dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>
         <dependency>
         	<groupId>org.hibernate</groupId>
         	<artifactId>hibernate-commons-annotations</artifactId>
